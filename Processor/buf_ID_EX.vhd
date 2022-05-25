@@ -23,6 +23,8 @@ opcode : in std_logic_vector(2 downto 0);
 mem_read_en, mem_write_en : in std_logic;
 --1 bit enable for input port
 InPort_en : in std_logic;
+--1 bit enable writeback
+writeback_en : in std_logic;
 
 --pass the inputs to the output of the buffer
 Rdst_o : out std_logic_vector(2 downto 0);
@@ -34,6 +36,7 @@ opcode_o : out std_logic_vector(2 downto 0);
 mem_read_en_o : out std_logic;
 mem_write_en_o : out std_logic;
 InPort_en_o : out std_logic;
+writeback_en_o : out std_logic
 );
 end buf_ID_EX;
 
@@ -52,6 +55,7 @@ if (rst = '1') then
     mem_read_en_o <= '0';
     mem_write_en_o <= '0';
     InPort_en_o <= '0';
+    writeback_en_o <= '0';
    
 elsif rising_edge(clk) then
     --pass the inputs to the outputs
@@ -64,6 +68,7 @@ elsif rising_edge(clk) then
     mem_read_en_o <= mem_read_en;
     mem_write_en_o <= mem_write_en;
     InPort_en_o <= InPort_en;
+    writeback_en_o <= writeback_en;
 end if;
 end process;
 end buf_arch;
