@@ -1,4 +1,29 @@
-C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd
+{C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/Register.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/Register.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Reg
+-- Compiling architecture regArch of Reg
+
+} {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/SignExtend.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/SignExtend.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity signExtend
+-- Compiling architecture signExtend_arch of signExtend
+
+} {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/Tri-State.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Zaka\Desktop\Courses\Arch\Arch Project Processor\Processor\Tri-State.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity triState
+-- Compiling architecture triState_arch of triState
+
+} {} {}} C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -6,21 +31,23 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity buf_ID_EX
 -- Compiling architecture buf_arch of buf_ID_EX
 
-} {} {}} C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Zaka\Desktop\Courses\Arch\Processor\buf_IF_ID.vhd}
+} {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/Memory.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/Memory.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity buf_IF_ID
--- Compiling architecture buf_arch of buf_IF_ID
+-- Loading package NUMERIC_STD
+-- Compiling entity Memory
+-- Compiling architecture syncrama of Memory
 
-} {} {}} C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_EX_MEM.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Zaka\Desktop\Courses\Arch\Processor\buf_EX_MEM.vhd}
+} {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/ALU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/ALU.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity buf_EX_MEM
--- Compiling architecture buf_arch of buf_EX_MEM
+-- Loading package NUMERIC_STD
+-- Compiling entity ALU
+-- Compiling architecture alu_arch of alu
 
 } {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/buf_MEM_WB.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/buf_MEM_WB.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -29,5 +56,29 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling entity buf_MEM_WB
 -- Compiling architecture buf_arch of buf_MEM_WB
+
+} {} {}} C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_EX_MEM.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_EX_MEM.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity buf_EX_MEM
+-- Compiling architecture buf_arch of buf_EX_MEM
+
+} {} {}} C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity buf_IF_ID
+-- Compiling architecture buf_arch of buf_IF_ID
+
+} {} {}} {C:/Users/Zaka/Desktop/Courses/Arch/Arch Project Processor/Processor/FlagReg.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Zaka\Desktop\Courses\Arch\Arch Project Processor\Processor\FlagReg.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity flagReg
+-- Compiling architecture flagReg_arch of flagReg
 
 } {} {}}
