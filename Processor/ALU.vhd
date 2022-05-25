@@ -9,9 +9,9 @@ ENTITY ALU IS
 	      alu_enable: in std_logic;
 	      result: out std_logic_vector (31 downto 0);
               flags: out std_logic_vector (2 downto 0));
-END alu;
+END ALU;
 
-ARCHITECTURE alu_arch OF alu IS
+ARCHITECTURE alu_arch OF ALU IS
 	
 	signal carry_flag: std_logic;
 	signal zero_flag: std_logic;
