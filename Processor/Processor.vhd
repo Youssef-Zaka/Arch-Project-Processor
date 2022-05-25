@@ -47,7 +47,7 @@ component buf_ID_EX is
         --32 bits for PC
         PC : in std_logic_vector(31 downto 0);
         -- 3 bits for opcode
-        opcode : in std_logic_vector(2 downto 0);
+        opcode : in std_logic_vector(3 downto 0);
         
         --1 bit enables for mem read and write
         mem_read_en, mem_write_en : in std_logic;
@@ -62,7 +62,7 @@ component buf_ID_EX is
         Rsrc2_o : out std_logic_vector(31 downto 0);
         Imm_o : out std_logic_vector(31 downto 0);
         PC_o : out std_logic_vector(31 downto 0);
-        opcode_o : out std_logic_vector(2 downto 0);
+        opcode_o : out std_logic_vector(3 downto 0);
         mem_read_en_o : out std_logic;
         mem_write_en_o : out std_logic;
         InPort_en_o : out std_logic;
@@ -180,9 +180,9 @@ END component;
 --TriState 
 component triState IS
 PORT(
-Q : in std_logic_vector (2 DOWNTO 0);
+Q : in std_logic_vector (31 DOWNTO 0);
 en : in std_logic;
-output: out std_logic_vector (2 DOWNTO 0)
+output: out std_logic_vector (31 DOWNTO 0)
 );
 END component;
 
@@ -193,6 +193,134 @@ data_in : in std_logic_vector (15 DOWNTO 0);
 data_out: out std_logic_vector (31 DOWNTO 0)
 );
 END component;
+
+
+--Signals 
+-------------------------buf_IF_ID----------------------------------
+--------------------------------------------------------------------
+signal buf_IF_ID_instruction : std_logic_vector(31 downto 0);
+signal buf_IF_ID_PC : std_logic_vector(31 downto 0);
+signal buf_IF_ID_instruction_o : std_logic_vector(31 downto 0);
+signal buf_IF_ID_PC_o : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------buf_ID_EX----------------------------------
+--------------------------------------------------------------------
+signal buf_ID_EX_Rdst : std_logic_vector(2 downto 0);
+signal buf_ID_EX_Rsrc1 : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Rsrc2 : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Imm : std_logic_vector(31 downto 0);
+signal buf_ID_EX_PC : std_logic_vector(31 downto 0);
+signal buf_ID_EX_opcode : std_logic_vector(3 downto 0);
+signal buf_ID_EX_mem_read_en : std_logic;
+signal buf_ID_EX_mem_write_en : std_logic;
+signal buf_ID_EX_InPort_en : std_logic;
+signal buf_ID_EX_writeback_en : std_logic;
+signal buf_ID_EX_Rdst_o : std_logic_vector(2 downto 0);
+signal buf_ID_EX_Rsrc1_o : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Rsrc2_o : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Imm_o : std_logic_vector(31 downto 0);
+signal buf_ID_EX_PC_o : std_logic_vector(31 downto 0);
+signal buf_ID_EX_opcode_o : std_logic_vector(3 downto 0);
+signal buf_ID_EX_mem_read_en_o : std_logic;
+signal buf_ID_EX_mem_write_en_o : std_logic;
+signal buf_ID_EX_InPort_en_o : std_logic;
+signal buf_ID_EX_writeback_en_o : std_logic;
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------buf_EX_MEM----------------------------------
+--------------------------------------------------------------------
+signal buf_EX_MEM_alu_result : std_logic_vector(31 downto 0);
+signal buf_EX_MEM_Rdst : std_logic_vector(2 downto 0);
+signal buf_EX_MEM_mem_read_en : std_logic;
+signal buf_EX_MEM_mem_write_en : std_logic;
+signal buf_EX_MEM_writeback_en : std_logic;
+signal buf_EX_MEM_alu_result_o : std_logic_vector(31 downto 0);
+signal buf_EX_MEM_Rdst_o : std_logic_vector(2 downto 0);
+signal buf_EX_MEM_mem_read_en_o : std_logic;
+signal buf_EX_MEM_mem_write_en_o : std_logic;
+signal buf_EX_MEM_writeback_en_o : std_logic;
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------buf_MEM_WB----------------------------------
+--------------------------------------------------------------------
+signal buf_MEM_WB_alu_result : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_Rdst : std_logic_vector(2 downto 0);
+signal buf_MEM_WB_mem_result : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_writeback_en : std_logic;
+signal buf_MEM_WB_alu_result_o : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_Rdst_o : std_logic_vector(2 downto 0);
+signal buf_MEM_WB_mem_result_o : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_writeback_en_o : std_logic;
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Memory-------------------------------------
+--------------------------------------------------------------------
+signal Memory_re : std_logic;
+signal Memory_we : std_logic;
+signal Memory_address : std_logic_vector(31 downto 0);
+signal Memory_data_in : std_logic_vector(31 downto 0);
+signal Memory_data_out : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Flag_Registers-----------------------------
+--------------------------------------------------------------------
+signal Flag_Registers_Z : std_logic;
+signal Flag_Registers_En : std_logic;
+signal Flag_Registers_N : std_logic;
+signal Flag_Registers_C : std_logic;
+signal Flag_Registers_Z_o : std_logic;
+signal Flag_Registers_N_o : std_logic;
+signal Flag_Registers_C_o : std_logic;
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Reg----------------------------------------
+--------------------------------------------------------------------
+signal Reg_En : std_logic;
+signal Reg_data : std_logic_vector(31 downto 0);
+signal Reg_data_o : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Adder--------------------------------------
+--------------------------------------------------------------------
+signal Adder_PC : std_logic_vector(31 downto 0);
+signal Adder_C : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Mux----------------------------------------
+--------------------------------------------------------------------
+signal Mux_in_1 : std_logic_vector(31 downto 0);
+signal Mux_in_0 : std_logic_vector(31 downto 0);
+signal Mux_sel : std_logic;
+signal Mux_out : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------ALU----------------------------------------
+--------------------------------------------------------------------
+signal ALU_data_1 : std_logic_vector(31 downto 0);
+signal ALU_data_2 : std_logic_vector(31 downto 0);
+signal ALU_sel : std_logic_vector(3 downto 0);
+signal ALU_cin : std_logic;
+signal ALU_enable : std_logic;
+signal ALU_result : std_logic_vector(31 downto 0);
+signal ALU_flags : std_logic_vector(2 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------Tristate-----------------------------------
+--------------------------------------------------------------------
+signal Tristate_Q : std_logic_vector(31 downto 0);
+signal Tristate_output : std_logic_vector(31 downto 0);
+signal Tristate_en : std_logic;
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------signExtend---------------------------------
+--------------------------------------------------------------------
+signal signExtend_data_out : std_logic_vector(31 downto 0);
+signal signExtend_data_in : std_logic_vector(15 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+
+
 
 begin
 

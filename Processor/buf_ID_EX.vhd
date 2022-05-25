@@ -17,7 +17,7 @@ Imm : in std_logic_vector(31 downto 0);
 --32 bits for PC
 PC : in std_logic_vector(31 downto 0);
 -- 3 bits for opcode
-opcode : in std_logic_vector(2 downto 0);
+opcode : in std_logic_vector(3 downto 0);
 
 --1 bit enables for mem read and write
 mem_read_en, mem_write_en : in std_logic;
@@ -32,7 +32,7 @@ Rsrc1_o : out std_logic_vector(31 downto 0);
 Rsrc2_o : out std_logic_vector(31 downto 0);
 Imm_o : out std_logic_vector(31 downto 0);
 PC_o : out std_logic_vector(31 downto 0);
-opcode_o : out std_logic_vector(2 downto 0);
+opcode_o : out std_logic_vector(3 downto 0);
 mem_read_en_o : out std_logic;
 mem_write_en_o : out std_logic;
 InPort_en_o : out std_logic;

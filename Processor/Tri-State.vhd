@@ -5,9 +5,9 @@ ENTITY triState IS
 
 PORT(
 
-Q : in std_logic_vector (2 DOWNTO 0);
+Q : in std_logic_vector (31 DOWNTO 0);
 en : in std_logic;
-output: out std_logic_vector (2 DOWNTO 0));
+output: out std_logic_vector (31 DOWNTO 0));
 
 END triState;
 
