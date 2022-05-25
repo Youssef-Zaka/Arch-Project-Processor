@@ -281,6 +281,13 @@ signal Reg_data : std_logic_vector(31 downto 0);
 signal Reg_data_o : std_logic_vector(31 downto 0);
 --------------------------------------------------------------------
 --------------------------------------------------------------------
+-------------------------PC_Reg-------------------------------------
+--------------------------------------------------------------------
+signal PC_Reg_En : std_logic;
+signal PC_Reg_data : std_logic_vector(31 downto 0);
+signal PC_Reg_data_o : std_logic_vector(31 downto 0);
+--------------------------------------------------------------------
+--------------------------------------------------------------------
 -------------------------Adder--------------------------------------
 --------------------------------------------------------------------
 signal Adder_PC : std_logic_vector(31 downto 0);
@@ -319,10 +326,48 @@ signal signExtend_data_out : std_logic_vector(31 downto 0);
 signal signExtend_data_in : std_logic_vector(15 downto 0);
 --------------------------------------------------------------------
 --------------------------------------------------------------------
-
-
-
 begin
+
+    --First stage
+    MEMORY: Memory PORT MAP (
+        clk,
+        Memory_we,
+        Memory_re,
+        Memory_address,
+        Memory_data_in,
+        Memory_data_out
+    );
+    Memory_address <= PC_Reg_data_o;
+    Memory_we <= '0';
+    Memory_re <= '1';
+
+
+    ADDER: Adder PORT MAP (
+        Adder_PC,
+        Adder_C
+    );
+    Adder_PC <= PC_Reg_data_o;
+    
+    
+    PC: Reg Port Map (
+        clk,rst,
+        PC_Reg_En,
+        Adder_C,
+        PC_Reg_data_o
+    );
+    PC_Reg_En <= '1';
+
+
+    BUF_IF_ID: buf_IF_ID PORT MAP (
+        rst,
+        clk,
+        buf_IF_ID_instruction,
+        buf_IF_ID_PC,
+        buf_IF_ID_instruction_o,
+        buf_IF_ID_PC_o,
+    );
+    buf_IF_ID_instruction <= MEMORY_data_out;
+    buf_IF_ID_PC <= PC_Reg_data_o;
 
 
 end Processor_arch;
