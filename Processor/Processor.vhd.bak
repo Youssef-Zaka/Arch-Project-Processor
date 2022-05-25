@@ -258,7 +258,7 @@ signal buf_MEM_WB_writeback_en_o : std_logic;
 --------------------------------------------------------------------
 signal Memory_re : std_logic;
 signal Memory_we : std_logic;
-signal Memory_address : std_logic_vector(19 downto 0);
+signal Memory_address : std_logic_vector(31 downto 0);
 signal Memory_data_in : std_logic_vector(31 downto 0);
 signal Memory_data_out : std_logic_vector(31 downto 0);
 --------------------------------------------------------------------
@@ -337,7 +337,7 @@ begin
         Memory_data_in,
         Memory_data_out
     );
-    Memory_address <= PC_Reg_data_o(19 downto 0);
+    Memory_address <= PC_Reg_data_o;
     Memory_we <= '0';
     Memory_re <= '1';
 
@@ -364,7 +364,7 @@ begin
         buf_IF_ID_instruction,
         buf_IF_ID_PC,
         buf_IF_ID_instruction_o,
-        buf_IF_ID_PC_o
+        buf_IF_ID_PC_o,
     );
     buf_IF_ID_instruction <= MEMORY_data_out;
     buf_IF_ID_PC <= PC_Reg_data_o;
