@@ -1,0 +1,88 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Modelsim
+Ebuf_id_ex
+Z0 w1653481166
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/Users/Zaka/Desktop/Courses/Arch/Processor
+Z4 8C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd
+Z5 FC:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd
+l0
+L4
+VFNAadc4[Wj5`54_BhHN;A0
+!s100 `HSOzN<^1KeI]:Q4f_F1b2
+Z6 OV;C;10.5b;63
+32
+Z7 !s110 1653481176
+!i10b 1
+Z8 !s108 1653481176.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd|
+Z10 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_ID_EX.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abuf_arch
+R1
+R2
+DEx4 work 9 buf_id_ex 0 22 FNAadc4[Wj5`54_BhHN;A0
+l32
+L31
+VP<nVmfmADeK<Pkd^OS9I;2
+!s100 d4IOFhWm4CXgli[M?a_SS0
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ebuf_if_id
+Z13 w1653480708
+R1
+R2
+R3
+Z14 8C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd
+Z15 FC:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd
+l0
+L4
+VBX7=W9g<?R9SC^H9f5ja50
+!s100 hzUOg5A;;hWB=WHh08CzO2
+R6
+32
+Z16 !s110 1653480755
+!i10b 1
+Z17 !s108 1653480755.000000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd|
+Z19 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Processor/buf_IF_ID.vhd|
+!i113 1
+R11
+R12
+Abuf_arch
+R1
+R2
+DEx4 work 9 buf_if_id 0 22 BX7=W9g<?R9SC^H9f5ja50
+l22
+L21
+VhzF^=J[@`0hih;UOSM2g>0
+!s100 Cbnmi33PKAZ;aaJndeQ7I3
+R6
+32
+R16
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R11
+R12
