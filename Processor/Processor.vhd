@@ -105,8 +105,8 @@ component buf_EX_MEM is
         Rdst_o : out std_logic_vector(2 downto 0);
         alu_result_o : out std_logic_vector(31 downto 0);
         mem_read_en_o, mem_write_en_o : out std_logic;
-        writeback_en_o : out std_logic
-        decoder_wb_en_o: out std_logic;
+        writeback_en_o : out std_logic;
+        decoder_wb_en_o: out std_logic
         );
 end component; 
 
@@ -752,20 +752,26 @@ buf_EX: buf_EX_MEM port map(
     buf_ID_EX_mem_write_en_o,
     buf_ID_EX_writeback_en_o,
     buf_ID_EX_wb_reg_enable_o,
-    buf_EX_MEM_alu_result_o,
     buf_EX_MEM_Rdst_o,
+    buf_EX_MEM_alu_result_o,
     buf_EX_MEM_mem_read_en_o,
     buf_EX_MEM_mem_write_en_o,
     buf_EX_MEM_writeback_en_o,
     buf_EX_MEM_wb_reg_enable_o
 );
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Fourth stage (MEM) 
+-------------------------------------------------------------------------------
+
+
 
 
 
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-
 
 end Processor_arch;
 
