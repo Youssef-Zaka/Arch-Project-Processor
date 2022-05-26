@@ -318,6 +318,7 @@ signal buf_MEM_WB_alu_result_o : std_logic_vector(31 downto 0);
 signal buf_MEM_WB_Rdst_o : std_logic_vector(2 downto 0);
 signal buf_MEM_WB_mem_result_o : std_logic_vector(31 downto 0);
 signal buf_MEM_WB_writeback_en_o : std_logic;
+signal buf_MEM_WB_decoder_en_o : std_logic;
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 -------------------------Memory-------------------------------------
@@ -770,8 +771,38 @@ buf_EX: buf_EX_MEM port map(
 
 
 
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
 
+buf_MEM_WB_OBJ: buf_MEM_WB port map(
+    rst,
+    clk,
+    buf_EX_MEM_alu_result_o,
+    buf_EX_MEM_Rdst_o,
+    Memory_data_out,
+    buf_EX_MEM_writeback_en_o,
+    buf_EX_MEM_wb_reg_enable_o,
+    buf_MEM_WB_Rdst_o,
+    buf_MEM_WB_alu_result_o,
+    buf_MEM_WB_mem_result_o,
+    buf_MEM_WB_writeback_en_o,
+    buf_MEM_WB_decoder_en_o
+);
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Fifth stage (MEM) 
+-------------------------------------------------------------------------------
+writeback_result <=  buf_MEM_WB_alu_result_o when buf_MEM_WB_writeback_en_o = '0'
+                          else buf_MEM_WB_mem_result_o;
+decoder_sel <= buf_MEM_WB_Rdst_o;
+decoder_enable_s <= buf_MEM_WB_decoder_en_o;
+
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 end Processor_arch;
 
