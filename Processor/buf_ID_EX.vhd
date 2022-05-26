@@ -9,22 +9,30 @@ rst, clk : in std_logic;
 --3 bits for Rdst
 Rdst : in std_logic_vector(2 downto 0);
 --32 bits for Rsrc1
-Rsrc1 : in std_logic_vector(31 downto 0);
+Rsrc1 : in std_logic_vector(31 downto 0); -- el mfrood dah data_1 
 --32 bits for Rsrc2
-Rsrc2 : in std_logic_vector(31 downto 0);
+Rsrc2 : in std_logic_vector(31 downto 0); -- el mfrood dah data_2
 --32 bits for Imm
 Imm : in std_logic_vector(31 downto 0);
 --32 bits for PC
 PC : in std_logic_vector(31 downto 0);
 -- 3 bits for opcode
 opcode : in std_logic_vector(3 downto 0);
-
 --1 bit enables for mem read and write
 mem_read_en, mem_write_en : in std_logic;
 --1 bit enable for input port
 InPort_en : in std_logic;
 --1 bit enable writeback
 writeback_en : in std_logic;
+
+--added
+
+alu_en: in std_logic;
+OutPort_en: in std_logic;
+add_branch_mux: in std_logic;
+muxresult_oldpc_mux : in std_logic;
+wb_reg_enable: in std_logic;  
+
 
 --pass the inputs to the output of the buffer
 Rdst_o : out std_logic_vector(2 downto 0);
@@ -36,7 +44,12 @@ opcode_o : out std_logic_vector(3 downto 0);
 mem_read_en_o : out std_logic;
 mem_write_en_o : out std_logic;
 InPort_en_o : out std_logic;
-writeback_en_o : out std_logic
+writeback_en_o : out std_logic;
+alu_en_o: out std_logic;
+OutPort_en_o: out std_logic;
+add_branch_mux_o: out std_logic;
+muxresult_oldpc_mux_o : out std_logic;
+wb_reg_enable_o: out std_logic
 );
 end buf_ID_EX;
 
@@ -56,6 +69,11 @@ if (rst = '1') then
     mem_write_en_o <= '0';
     InPort_en_o <= '0';
     writeback_en_o <= '0';
+    alu_en_o <= '0';
+    OutPort_en_o <= '0';
+    add_branch_mux_o <= '0';
+    muxresult_oldpc_mux_o <= '0';
+    wb_reg_enable_o <= '0';
    
 elsif rising_edge(clk) then
     --pass the inputs to the outputs
@@ -69,6 +87,12 @@ elsif rising_edge(clk) then
     mem_write_en_o <= mem_write_en;
     InPort_en_o <= InPort_en;
     writeback_en_o <= writeback_en;
+    alu_en_o <= alu_en;
+    OutPort_en_o <= OutPort_en;
+    add_branch_mux_o <= add_branch_mux;
+    muxresult_oldpc_mux_o <= muxresult_oldpc_mux;
+    wb_reg_enable_o <= wb_reg_enable;
+
 end if;
 end process;
 end buf_arch;

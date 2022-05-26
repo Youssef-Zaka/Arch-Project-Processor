@@ -72,7 +72,7 @@ dstAndsrc = [
             ]
 
 #List of Rdst Rsrc1 and Rsrc2 Instructions
-dstAndsrc = [
+dstAndsrc1Andsrc2 = [
             'ADD',
             'SUB',
             'AND'

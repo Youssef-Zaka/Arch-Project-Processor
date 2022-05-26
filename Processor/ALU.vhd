@@ -8,7 +8,8 @@ ENTITY ALU IS
 	      cin: in std_logic;
 	      alu_enable: in std_logic;
 	      result: out std_logic_vector (31 downto 0);
-              flags: out std_logic_vector (2 downto 0));
+		  flag_enable: out std_logic;
+          flags: out std_logic_vector (2 downto 0));
 END ALU;
 
 ARCHITECTURE alu_arch OF ALU IS
@@ -39,7 +40,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	else
 	negative_flag <= '0';
 	end if;
-	
+	flag_enable <= '1';
 	flags <= cin & zero_flag & negative_flag;
 	end if;
 
@@ -64,7 +65,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	else
 	negative_flag <= '0';
 	end if;
-	
+	flag_enable <= '1';
 	flags <= carry_flag & zero_flag & negative_flag;
 	end if;
 	
@@ -86,7 +87,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	else
 	negative_flag <= '0';
 	end if;
-	
+	flag_enable <= '1';
 	flags <= cin & zero_flag & negative_flag;
 	end if;
 
@@ -109,7 +110,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	else
 	negative_flag <= '0';
 	end if;
-	
+	flag_enable <= '1';
 	flags <= cin & zero_flag & negative_flag;
 	end if;
 
@@ -130,7 +131,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	else
 	negative_flag <= '0';
 	end if;
-	
+	flag_enable <= '1';
 	flags <= cin & zero_flag & negative_flag;
 	end if;
 
@@ -138,18 +139,21 @@ ARCHITECTURE alu_arch OF ALU IS
 
 	if (sel = "0101") then  -- pass first argument 0101
 	result <= data_1;
+	flag_enable <= '0';
 	end if;
 
 ----------------------------------------------------------------------
 
 	if (sel = "0110") then  -- nop 0110
 	result <= (others=>'0');
+	flag_enable <= '0';
 	end if;
 
 -----------------------------------------------------------------------
 	
 	if (sel = "0111") then  -- setc 0111
 	result <= (others=>'0');
+	flag_enable <= '1';
 	flags <= '1' & "00";
 	end if;
 
