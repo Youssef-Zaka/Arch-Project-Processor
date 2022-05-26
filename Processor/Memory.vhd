@@ -1,6 +1,26 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.numeric_std.all;
+	
+use std.textio.all;
+
+
+procedure READLINE (file F: TEXT; L: inout LINE);
+ 
+type LINE is access STRING; -- A LINE is a pointer
+                            -- to a STRING value.
+procedure OREAD (L : inout LINE; VALUE : out STD_ULOGIC_VECTOR;
+							GOOD : out BOOLEAN);
+procedure OREAD (L : inout LINE; VALUE : out STD_ULOGIC_VECTOR);
+
+procedure HREAD (L : inout LINE; VALUE : out STD_ULOGIC_VECTOR;
+							 GOOD : out BOOLEAN);
+procedure HREAD (L : inout LINE; VALUE : out STD_ULOGIC_VECTOR);
+
+alias BREAD is READ [LINE, STD_ULOGIC_VECTOR, BOOLEAN];
+alias BREAD is READ [LINE, STD_ULOGIC_VECTOR];
+
+
 
 ENTITY Memory IS
 	PORT(
@@ -20,7 +40,19 @@ ARCHITECTURE syncrama OF Memory IS
 
     --Memory Type
     TYPE mem_type IS ARRAY(0 TO 2 ** 20 - 1) OF std_logic_vector(31 DOWNTO 0);
-	SIGNAL Memory : mem_type ;
+	impure function init_ram_bin return mem_type is
+		file text_file : text open read_mode is "ram_content_bin.txt";
+		variable text_line : line;
+		variable ram_content : mem_type;
+	  begin
+		for i in 0 to 2 ** 20 - 1 loop
+		  readline(text_file, text_line);
+		  bread(text_line, ram_content(i));
+		end loop;
+		return ram_content;
+	end function;
+	  
+	SIGNAL Memory : mem_type := init_ram_bin;
 	
 	BEGIN
 		PROCESS(clk) IS
