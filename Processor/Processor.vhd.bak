@@ -105,8 +105,8 @@ component buf_EX_MEM is
         Rdst_o : out std_logic_vector(2 downto 0);
         alu_result_o : out std_logic_vector(31 downto 0);
         mem_read_en_o, mem_write_en_o : out std_logic;
-        writeback_en_o : out std_logic
-        decoder_wb_en_o: out std_logic;
+        writeback_en_o : out std_logic;
+        decoder_wb_en_o: out std_logic
         );
 end component; 
 
@@ -159,6 +159,14 @@ PORT(
     c_o , n_o , z_o : OUT std_logic
 );
 END component;
+
+--PC register
+component PC_Reg IS
+PORT( Clk,Rst,En : IN std_logic;
+data: IN std_logic_vector (31 downto 0) ;
+data_out: OUT std_logic_vector (31 downto 0) );
+END component;
+
 
 --Register
 component Reg IS
@@ -318,6 +326,7 @@ signal buf_MEM_WB_alu_result_o : std_logic_vector(31 downto 0);
 signal buf_MEM_WB_Rdst_o : std_logic_vector(2 downto 0);
 signal buf_MEM_WB_mem_result_o : std_logic_vector(31 downto 0);
 signal buf_MEM_WB_writeback_en_o : std_logic;
+signal buf_MEM_WB_decoder_en_o : std_logic;
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 -------------------------Memory-------------------------------------
@@ -446,9 +455,33 @@ signal immediate_rsrc2_mux_s: std_logic_vector (31 downto 0);
 ----micilanious signals ----------------------------------------------
 ----------------------------------------------------------------------
 signal OutputPort: std_logic_vector(31 downto 0);
+signal state : std_logic_vector(2 downto 0):= "000";
 
 ----------------------------------------------------------------------
 begin
+    --processes 
+    process(clk,state)
+    begin   
+    --if the state = 000, we are in the fetch stage
+    if state = "000" then
+        Adder_PC <= Memory_data_out;
+        --we are in fetch stage
+        state <= "001";
+    end IF
+
+    end process;
+    
+
+    process(clk, rst)
+    begin
+        if rst = '1' then
+            state <= "000";
+        else
+            case state is
+                when "000" => state <= "001";
+            end case;
+        end if;
+    end process;
 
     --First stage
     Memory_OBJ: Memory PORT MAP (
@@ -471,7 +504,7 @@ begin
     Adder_PC <= PC_Reg_data_o;
     
     
-    PC_OBJ: Reg Port Map (
+    PC_OBJ: PC_Reg Port Map (
         clk,rst,
         PC_Reg_En,
         Adder_C,
@@ -752,20 +785,56 @@ buf_EX: buf_EX_MEM port map(
     buf_ID_EX_mem_write_en_o,
     buf_ID_EX_writeback_en_o,
     buf_ID_EX_wb_reg_enable_o,
-    buf_EX_MEM_alu_result_o,
     buf_EX_MEM_Rdst_o,
+    buf_EX_MEM_alu_result_o,
     buf_EX_MEM_mem_read_en_o,
     buf_EX_MEM_mem_write_en_o,
     buf_EX_MEM_writeback_en_o,
     buf_EX_MEM_wb_reg_enable_o
 );
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Fourth stage (MEM) 
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+buf_MEM_WB_OBJ: buf_MEM_WB port map(
+    rst,
+    clk,
+    buf_EX_MEM_alu_result_o,
+    buf_EX_MEM_Rdst_o,
+    Memory_data_out,
+    buf_EX_MEM_writeback_en_o,
+    buf_EX_MEM_wb_reg_enable_o,
+    buf_MEM_WB_Rdst_o,
+    buf_MEM_WB_alu_result_o,
+    buf_MEM_WB_mem_result_o,
+    buf_MEM_WB_writeback_en_o,
+    buf_MEM_WB_decoder_en_o
+);
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Fifth stage (MEM) 
+-------------------------------------------------------------------------------
+writeback_result <=  buf_MEM_WB_alu_result_o when buf_MEM_WB_writeback_en_o = '0'
+                          else buf_MEM_WB_mem_result_o;
+decoder_sel <= buf_MEM_WB_Rdst_o;
+decoder_enable_s <= buf_MEM_WB_decoder_en_o;
 
 
 
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-
-
 end Processor_arch;
 

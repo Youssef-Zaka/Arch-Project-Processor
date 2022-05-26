@@ -160,6 +160,14 @@ PORT(
 );
 END component;
 
+--PC register
+component PC_Reg IS
+PORT( Clk,Rst,En : IN std_logic;
+data: IN std_logic_vector (31 downto 0) ;
+data_out: OUT std_logic_vector (31 downto 0) );
+END component;
+
+
 --Register
 component Reg IS
 PORT( Clk,Rst,En : IN std_logic;
@@ -447,9 +455,32 @@ signal immediate_rsrc2_mux_s: std_logic_vector (31 downto 0);
 ----micilanious signals ----------------------------------------------
 ----------------------------------------------------------------------
 signal OutputPort: std_logic_vector(31 downto 0);
+signal state : std_logic_vector(2 downto 0):= "000";
 
 ----------------------------------------------------------------------
 begin
+    --processes 
+    process(clk,state)
+    begin   
+    --if the state = 000, we are in the fetch stage
+    if state = "000" then
+        Adder_C <= Memory_data_out;
+    end IF;
+
+    if state = "001" then
+        Adder_C <= PC_Reg_data_o;
+    end IF;
+    end process;
+    process(clk, rst)
+    begin
+        if rst = '1' then
+            state <= "000";
+        else
+            if state = "000" then
+                state <= "001";
+            end if;
+        end if;
+    end process;
 
     --First stage
     Memory_OBJ: Memory PORT MAP (
@@ -469,10 +500,9 @@ begin
         Adder_PC,
         Adder_C
     );
-    Adder_PC <= PC_Reg_data_o;
     
     
-    PC_OBJ: Reg Port Map (
+    PC_OBJ: PC_Reg Port Map (
         clk,rst,
         PC_Reg_En,
         Adder_C,

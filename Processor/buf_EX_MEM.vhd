@@ -29,7 +29,7 @@ decoder_wb_en_o: out std_logic
 );
 
 
-end buf_ID_EX;
+end buf_EX_MEM;
 
 Architecture buf_arch of buf_EX_MEM is
 begin
@@ -38,12 +38,12 @@ begin
 if (rst = '1') then
     -- reset all outputs to 0
     
-    mem_read_en_o <= (others => '0');
-    mem_write_en_o <= (others => '0');
+    mem_read_en_o <= '0';
+    mem_write_en_o <= '0';
     Rdst_o <= (others => '0');
     alu_result_o <= (others => '0');
-    writeback_en_o <= (others => '0');
-    decoder_wb_en_o <= (others => '0');
+    writeback_en_o <= '0';
+    decoder_wb_en_o <= '0';
    
 elsif rising_edge(clk) then
     --pass input to outputs

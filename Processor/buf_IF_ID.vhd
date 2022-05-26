@@ -13,7 +13,7 @@ PC : in std_logic_vector(31 downto 0);
 
 --output for both instruction and PC
 instruction_out : out std_logic_vector(31 downto 0);
-PC_out : out std_logic_vector(31 downto 0);
+PC_out : out std_logic_vector(31 downto 0)
 
 );
 
