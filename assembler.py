@@ -8,7 +8,6 @@ from numpy import source
 # list of all file names in the directory with .asm extension
 files = [file.removesuffix(".asm")
          for file in os.listdir("./TestCases") if file.endswith(".asm")]
-files = ["OneOperand"]
 # Map of all our opcodes
 opCodes = {
     # 00000xx
