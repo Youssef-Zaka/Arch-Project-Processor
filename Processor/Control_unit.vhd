@@ -36,7 +36,7 @@ BEGIN
 if (opcode = "0000000") then 
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "0000";
+alu_op_code <= "0110";
 alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
@@ -61,7 +61,7 @@ end if;
 if (opcode = "0000001") then 
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "0000";
+alu_op_code <= "0110";
 alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
