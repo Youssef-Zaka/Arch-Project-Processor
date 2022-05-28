@@ -13,7 +13,9 @@ end entity;
 
 architecture arch of Adder is
 begin
+
     c <= std_logic_vector(to_signed((to_integer(signed(PC)) + 1),32));
+ 
 end arch;
 
 

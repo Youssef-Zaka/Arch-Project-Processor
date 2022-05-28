@@ -195,7 +195,8 @@ END component;
 
 --ALU
 component ALU IS
-	PORT (data_1,data_2 : in std_logic_vector (31 downto 0);
+	PORT (rst : IN std_logic;
+            data_1,data_2 : in std_logic_vector (31 downto 0);
 	      sel: in std_logic_vector (3 downto 0);
 	      cin: in std_logic;
 	      alu_enable: in std_logic;
@@ -274,16 +275,22 @@ signal buf_IF_ID_PC_o : std_logic_vector(31 downto 0);
 --------------------------------------------------------------------
 -------------------------buf_ID_EX----------------------------------
 --------------------------------------------------------------------
---signal buf_ID_EX_Rdst : std_logic_vector(2 downto 0);
---signal buf_ID_EX_Rsrc1 : std_logic_vector(31 downto 0);
---signal buf_ID_EX_Rsrc2 : std_logic_vector(31 downto 0);
---signal buf_ID_EX_Imm : std_logic_vector(31 downto 0);
---signal buf_ID_EX_PC : std_logic_vector(31 downto 0);
---signal buf_ID_EX_opcode : std_logic_vector(3 downto 0);
---signal buf_ID_EX_mem_read_en : std_logic;
---signal buf_ID_EX_mem_write_en : std_logic;
---signal buf_ID_EX_InPort_en : std_logic;
---signal buf_ID_EX_writeback_en : std_logic;
+signal buf_ID_EX_Rdst : std_logic_vector(2 downto 0);
+signal buf_ID_EX_Rsrc1 : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Rsrc2 : std_logic_vector(31 downto 0);
+signal buf_ID_EX_Imm : std_logic_vector(31 downto 0);
+signal buf_ID_EX_PC : std_logic_vector(31 downto 0);
+signal buf_ID_EX_opcode : std_logic_vector(3 downto 0);
+signal buf_ID_EX_mem_read_en : std_logic;
+signal buf_ID_EX_mem_write_en : std_logic;
+signal buf_ID_EX_InPort_en : std_logic;
+signal buf_ID_EX_writeback_en : std_logic;
+signal buf_ID_EX_alu_en : std_logic;
+signal buf_ID_EX_outputport_en : std_logic;
+signal buf_ID_EX_add_branch_mux : std_logic;
+signal buf_ID_EX_muxresult_oldpc_mux : std_logic;
+signal buf_ID_EX_wb_reg_enable : std_logic;
+
 signal buf_ID_EX_Rdst_o : std_logic_vector(2 downto 0);
 signal buf_ID_EX_Rsrc1_o : std_logic_vector(31 downto 0);
 signal buf_ID_EX_Rsrc2_o : std_logic_vector(31 downto 0);
@@ -462,62 +469,64 @@ signal state : std_logic_vector(2 downto 0):= "000";
 ----------------------------------------------------------------------
 begin
 
-    
-    --processes 
 
-    PROCESS
-    BEGIN
-    wait until (rising_edge(Clk));
-        IF rst = '1' THEN
-            PC_Reg_data <= (others => '0');
-            Adder_PC <= std_logic_vector(to_signed((to_integer(signed(Memory_data_out)) - 2),32));
-            buf_IF_ID_instruction <= (others => '0');
-            buf_IF_ID_PC <= (others => '0');
-        ELSE
-            buf_IF_ID_instruction <= MEMORY_data_out;
-            buf_IF_ID_PC <= PC_Reg_data_o;
-            PC_Reg_data <= Adder_C;
-            Adder_PC <= PC_Reg_data_o;
-        END IF;
-    END PROCESS;
+   --processes 
 
-    --First stage
-    Memory_OBJ: Memory PORT MAP (
-        clk,
-        Memory_we,
-        Memory_re,
-        Memory_address,
-        Memory_data_in,
-        Memory_data_out
-    );
-    Memory_address <= PC_Reg_data_o(19 downto 0);
-    Memory_we <= '0';
-    Memory_re <= '1';
+   PROCESS
+   BEGIN
+   wait until (rising_edge(Clk));
+       IF rst = '1' THEN
+           Memory_address <= (others => '0');
+           PC_Reg_data <= Memory_data_out;
+           Adder_PC <= std_logic_vector(to_signed((to_integer(signed(Memory_data_out)) - 1),32));
+           buf_IF_ID_instruction <= (others => '0');
+           buf_IF_ID_PC <= (others => '0');
+       ELSE
+           Memory_address <= PC_Reg_data_o(19 downto 0);
+           PC_Reg_data <= Adder_C;
+           Adder_PC <= PC_Reg_data_o;
+           buf_IF_ID_instruction <= MEMORY_data_out;
+           buf_IF_ID_PC <= PC_Reg_data_o;
+       END IF;
+   END PROCESS;
 
-
-    ADDER_OBJ: Adder PORT MAP (
-        Adder_PC,
-        Adder_C
-    );
-    
-    
-    PC_OBJ: PC_Reg Port Map (
-        clk,rst,
-        PC_Reg_En,
-        Adder_C,
-        PC_Reg_data_o
-    );
-    PC_Reg_En <= '1';
+   --First stage
+   Memory_OBJ: Memory PORT MAP (
+       clk,
+       Memory_we,
+       Memory_re,
+       Memory_address,
+       Memory_data_in,
+       Memory_data_out
+   );
+   
+   Memory_we <= '0';
+   Memory_re <= '1';
 
 
-    BUF_IF_ID_OBJ: buf_IF_ID PORT MAP (
-        rst,
-        clk,
-        buf_IF_ID_instruction,
-        buf_IF_ID_PC,
-        buf_IF_ID_instruction_o,
-        buf_IF_ID_PC_o
-    );
+   ADDER_OBJ: Adder PORT MAP (
+       Adder_PC,
+       Adder_C
+   );
+   
+   
+   PC_OBJ: PC_Reg Port Map (
+       clk,rst,
+       PC_Reg_En,
+       Adder_C,
+       PC_Reg_data_o
+   );
+   PC_Reg_En <= '1';
+
+
+   BUF_IF_ID_OBJ: buf_IF_ID PORT MAP (
+       rst,
+       clk,
+       buf_IF_ID_instruction,
+       buf_IF_ID_PC,
+       buf_IF_ID_instruction_o,
+       buf_IF_ID_PC_o
+   );
 
 -------------------------------------------------------------------------------
 -- Second stage (Decode) 
@@ -692,25 +701,63 @@ immediate_rsrc2_mux_s
 );
 
 -- buffer ID_EX
+PROCESS
+    BEGIN
+    wait until (rising_edge(Clk));
+        IF rst = '1' THEN
+            buf_ID_EX_Rdst <= (others=>'0');
+            buf_ID_EX_Rsrc1 <= (others=>'0');
+            buf_ID_EX_Rsrc2 <= (others=>'0');
+            buf_ID_EX_IMM <= (others=>'0');
+            buf_ID_EX_PC <= (others=>'0');
+            buf_ID_EX_opcode <= (others=>'0');
+            buf_ID_EX_mem_read_en <='0';
+            buf_ID_EX_mem_write_en <='0';
+            buf_ID_EX_InPort_en <='0';
+            buf_ID_EX_writeback_en <='0';
+            buf_ID_EX_alu_en <='0';
+            buf_ID_EX_outputport_en <='0';
+            buf_ID_EX_add_branch_mux <='0';
+            buf_ID_EX_muxresult_oldpc_mux <='0';
+            buf_ID_EX_wb_reg_enable <='0';
+        ELSE
+            buf_ID_EX_Rdst <= buf_IF_ID_instruction_o(24 downto 22);
+            buf_ID_EX_Rsrc1 <= rdst_rsrc1_mux_s;
+            buf_ID_EX_Rsrc2 <= immediate_rsrc2_mux_s;
+            buf_ID_EX_IMM <= signExtend_data_out;
+            buf_ID_EX_PC <= buf_IF_ID_PC_o;
+            buf_ID_EX_opcode <= alu_op_code_s;
+            buf_ID_EX_mem_read_en <= mem_read_enable_s;
+            buf_ID_EX_mem_write_en <=mem_write_enable_s;
+            buf_ID_EX_InPort_en <=input_port_enable_s;
+            buf_ID_EX_writeback_en <=mux_wb_s;
+            buf_ID_EX_alu_en <=alu_enable_s;
+            buf_ID_EX_outputport_en <=output_port_enable_s;
+            buf_ID_EX_add_branch_mux <=mux_pc_adder_and_branch_s;
+            buf_ID_EX_muxresult_oldpc_mux <=mux_PcOld_mux_adderAndBranch_s;
+            buf_ID_EX_wb_reg_enable <= wb_reg_enable_s;
+        END IF;
+    END PROCESS;
+
 
 buf_id: buf_ID_EX port map(
 rst,
 clk,
-buf_IF_ID_instruction_o(24 downto 22),
-rdst_rsrc1_mux_s,
-immediate_rsrc2_mux_s,
-signExtend_data_out,
-buf_IF_ID_PC_o,
-alu_op_code_s,
-mem_read_enable_s,
-mem_write_enable_s,
-input_port_enable_s,
-mux_wb_s,
-alu_enable_s,
-output_port_enable_s,
-mux_pc_adder_and_branch_s,
-mux_PcOld_mux_adderAndBranch_s,
-wb_reg_enable_s,
+buf_ID_EX_Rdst,
+buf_ID_EX_Rsrc1,
+buf_ID_EX_Rsrc2,
+buf_ID_EX_Imm,
+buf_ID_EX_PC,
+buf_ID_EX_opcode,
+buf_ID_EX_mem_read_en,
+buf_ID_EX_mem_write_en,
+buf_ID_EX_InPort_en,
+buf_ID_EX_writeback_en,
+buf_ID_EX_alu_en,
+buf_ID_EX_outputport_en,
+buf_ID_EX_add_branch_mux,
+buf_ID_EX_muxresult_oldpc_mux,
+buf_ID_EX_wb_reg_enable,
 buf_ID_EX_Rdst_o,
 buf_ID_EX_Rsrc1_o,
 buf_ID_EX_Rsrc2_o,
@@ -735,6 +782,7 @@ buf_ID_EX_wb_reg_enable_o
 -- Third stage (ALU) 
 -------------------------------------------------------------------------------
 ALU_OBJ: ALU port map(
+    rst,
     buf_ID_EX_Rsrc1_o,
     buf_ID_EX_Rsrc2_o,
     buf_ID_EX_opcode_o,
