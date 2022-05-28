@@ -478,6 +478,7 @@ begin
             buf_IF_ID_instruction <= MEMORY_data_out;
             buf_IF_ID_PC <= PC_Reg_data_o;
             PC_Reg_data <= Adder_C;
+            Adder_PC <= PC_Reg_data_o;
         END IF;
     END PROCESS;
 
