@@ -3,9 +3,7 @@ USE IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 ENTITY ALU IS
-	PORT (
-		  rst : IN STD_LOGIC;
-		  data_1,data_2 : in std_logic_vector (31 downto 0);
+	PORT (data_1,data_2 : in std_logic_vector (31 downto 0);
 	      sel: in std_logic_vector (3 downto 0);
 	      cin: in std_logic;
 	      alu_enable: in std_logic;
@@ -21,16 +19,6 @@ ARCHITECTURE alu_arch OF ALU IS
 	signal negative_flag: std_logic;
 	
 	BEGIn
-	process(rst)
-	begin
-		if rst = '1' then
-			carry_flag <= '0';
-			zero_flag <= '0';
-			negative_flag <= '0';
-			flags <= (others => '0');
-			flag_enable <= '1';
-		end if;
-	end process;
 	process (data_1,data_2,cin)
 	variable temp : Integer;
 	begin

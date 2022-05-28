@@ -13,7 +13,7 @@ PROCESS (Clk,Rst)
 BEGIN
 IF Rst = '1' THEN
 data_out <= (others=>'0');
-ELSIF falling_edge(Clk) and En = '1' THEN
+ELSIF rising_edge(Clk) and En = '1' THEN
 data_out <= data;
 END IF;
 END PROCESS;
