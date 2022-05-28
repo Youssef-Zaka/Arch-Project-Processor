@@ -9,8 +9,8 @@ PORT(
     clk : IN STD_LOGIC;
     rst : IN STD_LOGIC;
     InPort : IN STD_LOGIC_VECTOR(31 downto 0);
-    data_1 : in std_logic_vector(31 downto 0);
-    data_2 : in std_logic_vector(31 downto 0);
+    data_1_o : in std_logic_vector(31 downto 0);
+    data_2_o : in std_logic_vector(31 downto 0);
     rdst_o : in std_logic_vector(2 downto 0);
     immediate_o : in std_logic_vector(31 downto 0);
     pc_o : in std_logic_vector(31 downto 0);
@@ -117,7 +117,7 @@ signal Alu_result_bef_buf : std_logic_vector(31 downto 0);
 
 begin
 
-    ALU_OBJ: ALU port map(data_1, data_2, alu_op_code, Cin, alu_en_o, ResultfromALu, flagsEn, flags); 
+    ALU_OBJ: ALU port map(data_1_o, data_2_o, alu_op_code, Cin, alu_en_o, ResultfromALu, flagsEn, flags); 
     Flag_Register_OBJ: flagReg port map(clk,rst,flagsEn, flags(2),flags(0),flags(1), Cin, N_flag, Z_flag);
 
 
