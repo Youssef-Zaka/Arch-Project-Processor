@@ -457,30 +457,52 @@ signal immediate_rsrc2_mux_s: std_logic_vector (31 downto 0);
 signal OutputPort: std_logic_vector(31 downto 0);
 signal state : std_logic_vector(2 downto 0):= "000";
 
+
+
 ----------------------------------------------------------------------
 begin
-    --processes 
-    process(clk,state)
-    begin   
-    --if the state = 000, we are in the fetch stage
-    if state = "000" then
-        Adder_C <= Memory_data_out;
-    end IF;
 
-    if state = "001" then
-        Adder_C <= PC_Reg_data_o;
-    end IF;
-    end process;
-    process(clk, rst)
-    begin
-        if rst = '1' then
-            state <= "000";
-        else
-            if state = "000" then
-                state <= "001";
-            end if;
-        end if;
-    end process;
+    
+    --processes 
+
+    PROCESS
+    BEGIN
+    wait until (rising_edge(Clk));
+        IF rst = '1' THEN
+            PC_Reg_data <= (others => '0');
+            --set Adder_PC with Memory_data_out + 1 
+            Adder_PC <= std_logic_vector(to_signed((to_integer(signed(Memory_data_out)) - 2),32));
+            buf_IF_ID_instruction <= (others => '0');
+            buf_IF_ID_PC <= (others => '0');
+        ELSE
+            buf_IF_ID_instruction <= MEMORY_data_out;
+            buf_IF_ID_PC <= PC_Reg_data_o;
+            PC_Reg_data <= Adder_C;
+        END IF;
+    END PROCESS;
+
+
+    -- process(clk,state)
+    -- begin   
+    -- --if the state = 000, we are in the fetch stage
+    -- if state = "000" then
+    --     Adder_C <= Memory_data_out;
+    -- end IF;
+
+    -- if state = "001" then
+    --     Adder_C <= PC_Reg_data_o;
+    -- end IF;
+    -- end process;
+    -- process(clk, rst)
+    -- begin
+    --     if rst = '1' then
+    --         state <= "000";
+    --     else
+    --         if state = "000" then
+    --             state <= "001";
+    --         end if;
+    --     end if;
+    -- end process;
 
     --First stage
     Memory_OBJ: Memory PORT MAP (
@@ -519,8 +541,8 @@ begin
         buf_IF_ID_instruction_o,
         buf_IF_ID_PC_o
     );
-    buf_IF_ID_instruction <= MEMORY_data_out;
-    buf_IF_ID_PC <= PC_Reg_data_o;
+    -- buf_IF_ID_instruction <= MEMORY_data_out;
+    -- buf_IF_ID_PC <= PC_Reg_data_o;
 
 -------------------------------------------------------------------------------
 -- Second stage (Decode) 
