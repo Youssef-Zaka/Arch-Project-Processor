@@ -339,17 +339,12 @@ se: signExtend port map(
 signExtend_data_out
 );
 
--- 0 rscrc1, 1 rdst
--- 0 rscrc2, 1 immediate
-rdst_rsrc1_mux_s <= rsrc1_mux_s when mux_data_1_s = '0' else rdst_mux_s;
-immediate_rsrc2_mux_s<= rsrc2_mux_s when mux_data_2_s = '0' else signExtend_data_out;
- 
 buf_id: buf_ID_EX port map(
 rst,
 clk,
 Instruction(24 downto 22),
-rdst_rsrc1_mux_s,
-immediate_rsrc2_mux_s,
+rsrc1_mux_s,
+rsrc2_mux_s,
 signExtend_data_out,
 pc,
 alu_op_code_s,
