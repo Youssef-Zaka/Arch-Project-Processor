@@ -30,7 +30,10 @@ PORT(
     mem_write : out std_logic;
     writeback_mux : out std_logic;
     decoder_enable : out std_logic;
-    OutputPort : out STD_LOGIC_VECTOR(31 downto 0)
+    OutputPort : out STD_LOGIC_VECTOR(31 downto 0);
+    C : out std_logic;
+    N : out std_logic;
+    Z : out std_logic
     );
     end execute_stage;
 
@@ -128,5 +131,9 @@ begin
     buf: buf_EX_MEM port map(rst, clk, Alu_result_bef_buf, rdst_o, mem_read_o, mem_write_o, writeback_mux_o,decoder_enable_wb_stage, Rdst, Alu_result, mem_read, mem_write, writeback_mux, decoder_enable);
 
     OutputPort <= data_out_reg;
+
+    C <=  Cin;
+    N <=  N_flag;
+    Z <=  Z_flag;
 
 end execute_stage_arch;

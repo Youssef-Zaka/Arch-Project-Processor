@@ -26,7 +26,15 @@ entity decoder_stage is
     output_o : out std_logic;
     adder_branch_mux_o : out std_logic;
     result_adder_branch_mux_with_old_pc : out std_logic;
-    decoder_enable_wb_stage : out std_logic
+    decoder_enable_wb_stage : out std_logic;
+    R0_o: out std_logic_vector (31 downto 0);
+    R1_o: out std_logic_vector (31 downto 0);
+    R2_o: out std_logic_vector (31 downto 0);
+    R3_o: out std_logic_vector (31 downto 0);
+    R4_o: out std_logic_vector (31 downto 0);
+    R5_o: out std_logic_vector (31 downto 0);
+    R6_o: out std_logic_vector (31 downto 0);
+    R7_o: out std_logic_vector (31 downto 0)
   );
 end decoder_stage;
 
@@ -378,6 +386,16 @@ adder_branch_mux_o,
 result_adder_branch_mux_with_old_pc,
 decoder_enable_wb_stage
 );
+
+R0_o <= R0_out;
+R1_o <= R1_out;
+R2_o <= R2_out;
+R3_o <= R3_out;
+R4_o <= R4_out;
+R5_o <= R5_out;
+R6_o <= R6_out;
+R7_o <= R7_out;
+
 
 end architecture;
 
