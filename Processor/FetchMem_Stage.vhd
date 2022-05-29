@@ -153,7 +153,8 @@ begin
         Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
 
         --buf_IF_ID
-
+        buf_IF_ID_instruction<= (others => '0');
+        buf_IF_ID_PC <= (others => '0');
 end IF; 
     if rst = '0' and mem_read_en = '0' and mem_write_en = '0' then
         --PC register
@@ -165,7 +166,10 @@ end IF;
         --Memory
         Memory_Address_input := pc_data (19 downto 0);
         we <= '0';
- 
+        
+         --buf_IF_ID
+         buf_IF_ID_instruction<= Output_of_Memory;
+         buf_IF_ID_PC <= pc_data;
 end if;
 
 address <= Memory_Address_input;
@@ -183,9 +187,9 @@ Memory_OBJ: Memory PORT MAP (
     data_in,
     data_out
 );
-   
+mem_result <= data_out;
 
-    re <= '1';
+re <= '1';
 
 
 ADDER_OBJ: Adder PORT MAP (
@@ -211,6 +215,8 @@ BUF_IF_ID_OBJ: buf_IF_ID PORT MAP (
     buf_IF_ID_instruction_o,
     buf_IF_ID_PC_o
 );
+instruction_o <= buf_IF_ID_instruction_o;
+pc_o <= buf_IF_ID_PC_o;
 
 
 buf_MEM_WB_OBJ: buf_MEM_WB Port map(
@@ -228,5 +234,10 @@ buf_MEM_WB_OBJ: buf_MEM_WB Port map(
     buf_MEM_WB_decoder_en_o
 
 );
+Rdst_o <= buf_MEM_WB_Rdst_o;
+alu_result_o <= buf_MEM_WB_alu_result_o;
+memory_result_o <= buf_MEM_WB_mem_result_o;
+writeback_mux_en_o <= buf_MEM_WB_writeback_en_o;
+decoder_en_o <= buf_MEM_WB_decoder_en_o;
 
-end arch;
+end architecture;
