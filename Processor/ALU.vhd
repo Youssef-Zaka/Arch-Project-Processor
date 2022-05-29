@@ -140,6 +140,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	if (sel = "0101") then  -- pass first argument 0101
 	result <= data_1;
 	flag_enable <= '0';
+	flags <= cin & zero_flag & negative_flag;
 	end if;
 
 ----------------------------------------------------------------------
@@ -147,6 +148,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	if (sel = "0110") then  -- nop 0110
 	result <= (others=>'0');
 	flag_enable <= '0';
+	flags <= cin & zero_flag & negative_flag;
 	end if;
 
 -----------------------------------------------------------------------
@@ -160,6 +162,10 @@ ARCHITECTURE alu_arch OF ALU IS
 ------------------------------------------------------------------------
 
 	
+	else 
+	flags <= '0' & "00";
+	result <= (others=>'0');
+	flag_enable <= '0'; 
 	end if; -- if enable
 	end process;
 end Architecture;

@@ -1,0 +1,36 @@
+# Current time Sun May 29 19:45:38 2022
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x00ca685a: '<unknown (@0xca685a)>'
+# 1    0x00ca4d21: '<unknown (@0xca4d21)>'
+# 2    0x005f3b53: '<unknown (@0x5f3b53)>'
+# 3    0x005ed9c6: '<unknown (@0x5ed9c6)>'
+# 4    0x007cb53d: '<unknown (@0x7cb53d)>'
+# 5    0x007c8331: '<unknown (@0x7c8331)>'
+# 6    0x007c7f1b: '<unknown (@0x7c7f1b)>'
+# 7    0x007c7687: '<unknown (@0x7c7687)>'
+# 8    0x005e2f2b: '<unknown (@0x5e2f2b)>'
+# 9    0x007ccf6b: '<unknown (@0x7ccf6b)>'
+# 10   0x007ca601: '<unknown (@0x7ca601)>'
+# 11   0x007c83dd: '<unknown (@0x7c83dd)>'
+# 12   0x008f99b4: '<unknown (@0x8f99b4)>'
+# 13   0x008f257c: '<unknown (@0x8f257c)>'
+# 14   0x008ff34c: '<unknown (@0x8ff34c)>'
+# 15   0x00b20633: '<unknown (@0xb20633)>'
+# 16   0x00b21188: '<unknown (@0xb21188)>'
+# 17   0x00b1e244: '<unknown (@0xb1e244)>'
+# 18   0x008ff92d: '<unknown (@0x8ff92d)>'
+# 19   0x7981e716: 'Tcl_ListMathFuncs + 0x456' in 'd:\modelsim\modelsim_ase\win32aloem\tcl85.dll'
+# 20   0x7981f37e: 'Tcl_EvalEx + 0x80e' in 'd:\modelsim\modelsim_ase\win32aloem\tcl85.dll'
+# 21   0x7981eb8c: 'Tcl_EvalEx + 0x1c' in 'd:\modelsim\modelsim_ase\win32aloem\tcl85.dll'
+# 22   0x00c93007: '<unknown (@0xc93007)>'
+# 23   0x79871795: 'Tcl_NotifyChannel + 0x125' in 'd:\modelsim\modelsim_ase\win32aloem\tcl85.dll'
+# 24   0x798c0272: 'TclpHasSockets + 0x362' in 'd:\modelsim\modelsim_ase\win32aloem\tcl85.dll'
+# End of Stack Trace
+
+

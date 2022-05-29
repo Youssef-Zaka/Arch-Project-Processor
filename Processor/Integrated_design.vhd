@@ -18,9 +18,9 @@ Port(
     R5: out std_logic_vector(31 downto 0);
     R6: out std_logic_vector(31 downto 0);
     R7: out std_logic_vector(31 downto 0);
-    C: out std_logic;
-    N: out std_logic;
-    Z: out std_logic
+    Cf: out std_logic;
+    Nf: out std_logic;
+    Zf: out std_logic
 );
 end Integrated_Design;
 
@@ -258,9 +258,9 @@ begin
         EX_MEM_wtieback_mux_en,
         EX_MEM_decoder_en,
         output_port,
-        C,
-        N,
-        Z
+        Cf,
+        Nf,
+        Zf
     );
 
     MEM_WB_BUF: wb_stage Port Map (
