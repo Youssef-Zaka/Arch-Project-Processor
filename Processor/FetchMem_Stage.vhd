@@ -88,7 +88,7 @@ END component;
 
 --PC register
 component PC_Reg IS
-PORT( Clk,Rst,En : IN std_logic;
+PORT( Clk : IN std_logic;
 data: IN std_logic_vector (31 downto 0) ;
 data_out: OUT std_logic_vector (31 downto 0) );
 END component;
@@ -110,7 +110,6 @@ signal data_in : std_logic_vector(31 downto 0);
 signal data_out : std_logic_vector(31 downto 0);
 signal PC : std_logic_vector(31 downto 0);
 signal PC_plus_one : std_logic_vector(31 downto 0);
-signal pc_en : std_logic;
 signal pc_data : std_logic_vector(31 downto 0);
 signal pc_data_out : std_logic_vector(31 downto 0);
 signal buf_IF_ID_instruction : std_logic_vector(31 downto 0);
@@ -128,34 +127,51 @@ signal mem_result : std_logic_vector(31 downto 0);
 begin
 --processes
 
-process (clk)
+process (clk,rst)
 begin
-if falling_edge(clk) then
+-- address <= (others => '0'); 
+-- re <= '1';
+-- we <= '0';
+-- pc_en <= '1';
+-- if rising_edge(clk) then
+-- if rst = '1' then
+--     buf_IF_ID_instruction <= (others => '0');
+--     buf_IF_ID_PC <= (others => '0');
+--     we <= '0';
+--     re <= '1';
+    
+--     address <= (others => '0'); 
+--     pc_data <= data_out;
+--     pc <= data_out;
+
+-- elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' then
+--     re <= '1';
+--     we <= '0';
+--     pc_en <= '1';
+    
+--     address <= pc_data_out(19 downto 0); 
+--     buf_IF_ID_instruction<= data_out;
+--     buf_IF_ID_PC <= PC_data_out;
+--     Pc_data <= pc_plus_one;
+--     pc <= Pc_data_out;
+-- else
+-- end if;        
+-- end if;
+
+--if reset is 1
 if rst = '1' then
-    buf_IF_ID_instruction <= (others => '0');
-    buf_IF_ID_PC <= (others => '0');
-    we <= '0';
-    pc_en <= '1';
-    re <= '1';
-    
-    address <= (others => '0'); 
-    pc_data <= data_out;
-    pc <= data_out;
-
-elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' then
     re <= '1';
     we <= '0';
-    pc_en <= '1';
-    
-    address <= pc_data_out(19 downto 0); 
-    buf_IF_ID_instruction<= data_out;
-    buf_IF_ID_PC <= PC_data_out;
-    Pc_data <= pc_plus_one;
-    pc <= Pc_data_out;
+    address <= (others => '0');
+    PC <= data_out;
+    PC_data <= data_out;
+    elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' and falling_edge(clk) then
+    re <= '1';
+    we <= '0';
+    address <= PC_data_out(19 downto 0);
+    PC_data <= PC_plus_one;
+    PC <= PC_data_out;
 
-else
-        
-end if;        
 end if;
 end PROCESS;
 
@@ -178,8 +194,7 @@ ADDER_OBJ: Adder PORT MAP (
  
 
 PC_OBJ: PC_Reg Port Map (
-    clk,rst,
-    pc_en,
+    clk ,
     pc_data,
     pc_data_out
 );
