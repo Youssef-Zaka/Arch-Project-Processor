@@ -124,57 +124,54 @@ signal buf_MEM_WB_writeback_en_o : std_logic;
 signal buf_MEM_WB_decoder_en_o : std_logic;
 signal mem_result : std_logic_vector(31 downto 0);
 
+
+--variables
+
 begin
 --processes
 
+
 process (clk,rst)
+variable PC_Input : std_logic_vector(31 downto 0);
+variable Adder_input : std_logic_vector(31 downto 0);
+variable Memory_Address_input : std_logic_vector(19 downto 0);
+variable Output_of_Memory : std_logic_vector(31 downto 0);
 begin
--- address <= (others => '0'); 
--- re <= '1';
--- we <= '0';
--- pc_en <= '1';
--- if rising_edge(clk) then
--- if rst = '1' then
---     buf_IF_ID_instruction <= (others => '0');
---     buf_IF_ID_PC <= (others => '0');
---     we <= '0';
---     re <= '1';
-    
---     address <= (others => '0'); 
---     pc_data <= data_out;
---     pc <= data_out;
+    Output_of_Memory := data_out;
+    PC_Input := PC_Plus_One;
+    if rst = '1' then
+        we <= '0';
+        --Memory
+        Memory_Address_input := (others => '0');
+        Output_of_Memory := data_out;
 
--- elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' then
---     re <= '1';
---     we <= '0';
---     pc_en <= '1';
-    
---     address <= pc_data_out(19 downto 0); 
---     buf_IF_ID_instruction<= data_out;
---     buf_IF_ID_PC <= PC_data_out;
---     Pc_data <= pc_plus_one;
---     pc <= Pc_data_out;
--- else
--- end if;        
--- end if;
+        --PC register
+        PC_Input := PC_Plus_One;
 
---if reset is 1
-if rst = '1' then
-    re <= '1';
-    we <= '0';
-    address <= (others => '0');
-    PC <= data_out;
-    PC_data <= data_out;
-    elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' and falling_edge(clk) then
-    re <= '1';
-    we <= '0';
-    address <= PC_data_out(19 downto 0);
-    PC_data <= PC_plus_one;
-    PC <= PC_data_out;
+        --Adder
+        -- output of memory - 1
+        Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
 
+        --buf_IF_ID
+
+end IF; 
+    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' then
+        --PC register
+        PC_Input := PC_Plus_One;
+
+        --Adder
+        Adder_input := pc_data;
+
+        --Memory
+        Memory_Address_input := pc_data (19 downto 0);
+        we <= '0';
+ 
 end if;
-end PROCESS;
 
+address <= Memory_Address_input;
+PC <= Adder_input;
+PC_data <= PC_Input;
+end PROCESS;
 
 
 --First stage
@@ -186,18 +183,24 @@ Memory_OBJ: Memory PORT MAP (
     data_in,
     data_out
 );
+   
+
+    re <= '1';
+
 
 ADDER_OBJ: Adder PORT MAP (
     PC,
     PC_Plus_One
 );
- 
+
+
 
 PC_OBJ: PC_Reg Port Map (
     clk ,
     pc_data,
     pc_data_out
 );
+
 
 
 BUF_IF_ID_OBJ: buf_IF_ID PORT MAP (

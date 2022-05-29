@@ -22,9 +22,9 @@ Vndmzk0>nHnm58Ffg=j[jS2
 !s100 Z3nZTiBl=^2k@]d>b[UWM2
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1653813796
+Z8 !s110 1653834891
 !i10b 1
-Z9 !s108 1653813796.000000
+Z9 !s108 1653834891.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Adder.vhd|
 Z11 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Adder.vhd|
 !i113 1
@@ -165,11 +165,11 @@ Vnnll8fj9GZh]==MoGbm240
 !s100 D_l36fHzkb2fBQ?V3A;SC2
 R7
 32
-Z25 !s110 1653813797
+R8
 !i10b 1
-Z26 !s108 1653813797.000000
-Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_ID_EX.vhd|
-Z28 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_ID_EX.vhd|
+R9
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_ID_EX.vhd|
+Z26 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_ID_EX.vhd|
 !i113 1
 R12
 R13
@@ -183,11 +183,11 @@ VKK=leX<dPBoFYKFCWlNNA0
 !s100 4?5mQ5<OA<5Ae_81jBH<30
 R7
 32
-R25
+R8
 !i10b 1
+R9
+R25
 R26
-R27
-R28
 !i113 1
 R12
 R13
@@ -196,19 +196,19 @@ R0
 R2
 R3
 R4
-Z29 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd
-Z30 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd
+Z27 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd
+Z28 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd
 l0
 L4
 V;5X=hd>4V6Gj=j9g43b5R2
 !s100 ^UBjEWcW<4Y70<MS^bDa=1
 R7
 32
-R25
+R8
 !i10b 1
-R26
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd|
-Z32 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd|
+R9
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd|
+Z30 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_IF_ID.vhd|
 !i113 1
 R12
 R13
@@ -222,11 +222,11 @@ VE8a4oE6YYb<N<ocReXVO^3
 !s100 CEaM:ZbR42n:UTz:ZXnWG2
 R7
 32
-R25
+R8
 !i10b 1
-R26
-R31
-R32
+R9
+R29
+R30
 !i113 1
 R12
 R13
@@ -235,19 +235,19 @@ R0
 R2
 R3
 R4
-Z33 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd
-Z34 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd
+Z31 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd
+Z32 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd
 l0
 L6
 V;QS;nIJVhI[l`OhWEnW5c0
 !s100 bzRec3fzezKI96Fijk4]D1
 R7
 32
-R25
+R8
 !i10b 1
-R26
-Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd|
-Z36 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd|
+R9
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd|
+Z34 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/buf_MEM_WB.vhd|
 !i113 1
 R12
 R13
@@ -261,32 +261,32 @@ V9?Ab1OB3C[:Ggek]0L^il3
 !s100 c1O4LN7DlZP<AZoI5f]Mh1
 R7
 32
-R25
+R8
 !i10b 1
-R26
-R35
-R36
+R9
+R33
+R34
 !i113 1
 R12
 R13
 Econtrol_unit
-R0
+Z35 w1653832319
 R2
 R3
 R4
-Z37 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd
-Z38 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd
+Z36 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd
+Z37 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd
 l0
 L4
 VgAGmK[8TjN`dh8l33>U=41
 !s100 K[_Pa6UT;]a^Fa_AdS6>`0
 R7
 32
-R25
+R8
 !i10b 1
-R26
-Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd|
-Z40 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd|
+R9
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd|
+Z39 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Control_unit.vhd|
 !i113 1
 R12
 R13
@@ -296,15 +296,15 @@ R3
 DEx4 work 12 control_unit 0 22 gAGmK[8TjN`dh8l33>U=41
 l30
 L29
-V:?8na49Lahf8VAAO5XkfO1
-!s100 L0U0lzWe_ZOSDEI6=E]HO0
+V8zGn?<eVe5>54W82PcTXf0
+!s100 Z5C>[POl3EAO1VSU_YBH:3
 R7
 32
-R25
+R8
 !i10b 1
-R26
+R9
+R38
 R39
-R40
 !i113 1
 R12
 R13
@@ -313,19 +313,19 @@ R0
 R2
 R3
 R4
-Z41 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd
-Z42 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd
+Z40 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd
+Z41 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd
 l0
 L4
 Vm_0_D=3M3E<eXCbiGzcI11
 !s100 :^>BAMknM?@4j`2MRBO4m3
 R7
 32
-Z43 !s110 1653813798
+Z42 !s110 1653834892
 !i10b 1
-Z44 !s108 1653813798.000000
-Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd|
-Z46 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd|
+Z43 !s108 1653834892.000000
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd|
+Z45 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decoder.vhd|
 !i113 1
 R12
 R13
@@ -339,33 +339,33 @@ V6DXbGQb5XMQbUD[;^MJJW3
 !s100 g6i?;F=Ob1_@nQPfozXnj0
 R7
 32
-R43
+R42
 !i10b 1
+R43
 R44
 R45
-R46
 !i113 1
 R12
 R13
 Edecoder_stage
-Z47 w1653828215
+R35
 R1
 R2
 R3
-Z48 dC:/Users/karim/Documents/GitHub/Arch-Project-Processor/Processor
-Z49 8C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\Decode_stage.vhd
-Z50 FC:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\Decode_stage.vhd
+R4
+Z46 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decode_stage.vhd
+Z47 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decode_stage.vhd
 l0
 L6
 V=:6o4AQ<R`=ldnTNB^LD]2
 !s100 <Jn=R`GGYj5U<F3AS@=;X2
 R7
 32
-Z51 !s110 1653828237
+R8
 !i10b 1
-Z52 !s108 1653828237.000000
-Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\Decode_stage.vhd|
-Z54 !s107 C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\Decode_stage.vhd|
+R9
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decode_stage.vhd|
+Z49 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Decode_stage.vhd|
 !i113 1
 R12
 R13
@@ -373,40 +373,40 @@ Adecode_arch
 R1
 R2
 R3
-Z55 DEx4 work 13 decoder_stage 0 22 =:6o4AQ<R`=ldnTNB^LD]2
+DEx4 work 13 decoder_stage 0 22 =:6o4AQ<R`=ldnTNB^LD]2
 l190
 L33
 V^`]c6=V>3ejCY4KERFdCg2
 !s100 5gTJYemd40hAg^T7C4i`S0
 R7
 32
-R51
+R8
 !i10b 1
-R52
-R53
-R54
+R9
+R48
+R49
 !i113 1
 R12
 R13
 Eexecute_stage
-Z56 w1653756228
+Z50 w1653756228
 R1
 R2
 R3
 R4
-Z57 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd
-Z58 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd
+Z51 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd
+Z52 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd
 l0
 L7
 VHA1BT3c^U9@7Td2D_]bLE1
 !s100 <XL1KWmoN>oLH00bTlaQl1
 R7
 32
-Z59 !s110 1653813799
+R42
 !i10b 1
-Z60 !s108 1653813799.000000
-Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd|
-Z62 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd|
+R43
+Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd|
+Z54 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Execute_stage.vhd|
 !i113 1
 R12
 R13
@@ -421,33 +421,33 @@ VXE<gEbS59IXb6lQHM]9@R3
 !s100 AZ2HoJRH]alJ`:SfR;TFc0
 R7
 32
-R59
+R42
 !i10b 1
-R60
-R61
-R62
+R43
+R53
+R54
 !i113 1
 R12
 R13
 Efetch_stage
-Z63 w1653814344
+Z55 w1653835362
 R1
 R2
 R3
 R4
-Z64 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FetchMem_Stage.vhd
-Z65 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FetchMem_Stage.vhd
+Z56 8C:\Users\Zaka\Desktop\Courses\Arch\Arch-Project-Processor\Processor\FetchMem_Stage.vhd
+Z57 FC:\Users\Zaka\Desktop\Courses\Arch\Arch-Project-Processor\Processor\FetchMem_Stage.vhd
 l0
 L7
 VB2kbmWaj33[?NeSl5?g@[0
 !s100 hmfO]NNFP:`hd=z0nU?1[0
 R7
 32
-Z66 !s110 1653814355
+Z58 !s110 1653835367
 !i10b 1
-Z67 !s108 1653814355.000000
-Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FetchMem_Stage.vhd|
-Z69 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FetchMem_Stage.vhd|
+Z59 !s108 1653835367.000000
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\Zaka\Desktop\Courses\Arch\Arch-Project-Processor\Processor\FetchMem_Stage.vhd|
+Z61 !s107 C:\Users\Zaka\Desktop\Courses\Arch\Arch-Project-Processor\Processor\FetchMem_Stage.vhd|
 !i113 1
 R12
 R13
@@ -455,39 +455,39 @@ Aarch
 R1
 R2
 R3
-DEx4 work 11 fetch_stage 0 22 B2kbmWaj33[?NeSl5?g@[0
-l127
+Z62 DEx4 work 11 fetch_stage 0 22 B2kbmWaj33[?NeSl5?g@[0
+l130
 L28
-V]hAj1oHoaRzOK27kL5P]02
-!s100 849NfWaPKzCKalmAB?M931
+VmNT83i[Ibd2a95CckR0Al2
+!s100 o3_cO;;7o3<^@o^9TQ]`90
 R7
 32
-R66
+R58
 !i10b 1
-R67
-R68
-R69
+R59
+R60
+R61
 !i113 1
 R12
 R13
 Eflagreg
-Z70 w1653754248
+Z63 w1653754248
 R2
 R3
 R4
-Z71 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd
-Z72 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd
+Z64 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd
+Z65 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd
 l0
 L4
 V8IFJXeD<Y_IhC<iDcJP`n1
 !s100 8I7V=74Mn;[S8Scad8@b51
 R7
 32
-R43
+R42
 !i10b 1
-R44
-Z73 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd|
-Z74 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd|
+R43
+Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd|
+Z67 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/FlagReg.vhd|
 !i113 1
 R12
 R13
@@ -501,11 +501,11 @@ VWa=D80hHBPA>eoBGb34G00
 !s100 nGMk>Xh1MK0ZfVYQ2_8hU1
 R7
 32
-R43
+R42
 !i10b 1
-R44
-R73
-R74
+R43
+R66
+R67
 !i113 1
 R12
 R13
@@ -515,19 +515,19 @@ R1
 R2
 R3
 R4
-Z75 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd
-Z76 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd
+Z68 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd
+Z69 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd
 l0
 L7
 V5e`ZMPPXAdfI[>aI?4i;e2
 !s100 h;[UoDC4E@kcif]bkHbKW0
 R7
 32
-R43
+R42
 !i10b 1
-R44
-Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd|
-Z78 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd|
+R43
+Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd|
+Z71 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Memory.vhd|
 !i113 1
 R12
 R13
@@ -542,11 +542,11 @@ V;AV3D3iVgX^3=QoAX0`X`0
 !s100 oaZe6NeV9gm]zNclL`VG?3
 R7
 32
-R43
+R42
 !i10b 1
-R44
-R77
-R78
+R43
+R70
+R71
 !i113 1
 R12
 R13
@@ -555,19 +555,19 @@ R0
 R2
 R3
 R4
-Z79 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd
-Z80 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd
+Z72 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd
+Z73 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd
 l0
 L4
 VJIJ`2;e89iQAmEJdX`Uc52
 !s100 mAKQkFDFEo1X45Tm>A9nf0
 R7
 32
-R43
+R42
 !i10b 1
-R44
-Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd|
-Z82 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd|
+R43
+Z74 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd|
+Z75 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/MUX_3X8.vhd|
 !i113 1
 R12
 R13
@@ -581,11 +581,11 @@ VkFT[mRkFF2Q=NkbkRA2`?1
 !s100 35MnD:H3N=zPQOJkKPV1X3
 R7
 32
-R43
+R42
 !i10b 1
-R44
-R81
-R82
+R43
+R74
+R75
 !i113 1
 R12
 R13
@@ -594,19 +594,19 @@ R0
 R2
 R3
 R4
-Z83 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd
-Z84 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd
+Z76 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd
+Z77 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd
 l0
 L4
 V?miL`c<iC0B5=7A78W9DZ3
 !s100 nX;8hS=aKkTZHO2n[5f]z3
 R7
 32
-R43
+R42
 !i10b 1
-R44
-Z85 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd|
-Z86 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd|
+R43
+Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd|
+Z79 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Mux.vhd|
 !i113 1
 R12
 R13
@@ -620,32 +620,32 @@ V?0ND>`W;hzb4I:U80]:_E1
 !s100 ]Em?E`o?HUDlFQA:><KW81
 R7
 32
-R43
+R42
 !i10b 1
-R44
-R85
-R86
+R43
+R78
+R79
 !i113 1
 R12
 R13
 Epc_reg
-Z87 w1653814159
+Z80 w1653814691
 R2
 R3
 R4
-Z88 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd
-Z89 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd
+Z81 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd
+Z82 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd
 l0
 L5
 Vlb7j7^WI2Gi5RJA5?idQ32
 !s100 Ukfdeg;<`iSbhfacnMb>=1
 R7
 32
-Z90 !s110 1653814168
+Z83 !s110 1653834893
 !i10b 1
-Z91 !s108 1653814168.000000
-Z92 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd|
-Z93 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd|
+R43
+Z84 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd|
+Z85 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/PCReg.vhd|
 !i113 1
 R12
 R13
@@ -655,37 +655,37 @@ R3
 DEx4 work 6 pc_reg 0 22 lb7j7^WI2Gi5RJA5?idQ32
 l12
 L11
-VJib`GR9`A??20C;]QZLBj1
-!s100 <RLG26E8FE4lKM5@W3iaL3
+VFX>6:0>;IhaeJP<8YzBI52
+!s100 348A>SS8Vl<YabJdS^caJ0
 R7
 32
-R90
+R83
 !i10b 1
-R91
-R92
-R93
+R43
+R84
+R85
 !i113 1
 R12
 R13
 Eprocessor
-Z94 w1653739975
+Z86 w1653739975
 R1
 R2
 R3
 R4
-Z95 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd
-Z96 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd
+Z87 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd
+Z88 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd
 l0
 L6
 VeO36C4=M37V3K7>k8imHb3
 !s100 FP3IM8YeLAeW4zPMENUMi0
 R7
 32
-R59
+R83
 !i10b 1
-R60
-Z97 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd|
-Z98 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd|
+Z89 !s108 1653834893.000000
+Z90 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd|
+Z91 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Processor.vhd|
 !i113 1
 R12
 R13
@@ -700,32 +700,32 @@ VeJ8X6Kf]0XPdz46fC:X2H2
 !s100 bmDe2W:0V[j^4RhShY0CE3
 R7
 32
-R59
+R83
 !i10b 1
-R60
-R97
-R98
+R89
+R90
+R91
 !i113 1
 R12
 R13
 Ereg
-Z99 w1653754225
+Z92 w1653754225
 R2
 R3
 R4
-Z100 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd
-Z101 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd
+Z93 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd
+Z94 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd
 l0
 L4
 VcYaGV^GEBc9<hGdj6R1L@1
 !s100 0bKfo7>BVCGz1[iW5_Z7L0
 R7
 32
-R59
+R83
 !i10b 1
-R60
-Z102 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd|
-Z103 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd|
+R89
+Z95 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd|
+Z96 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Register.vhd|
 !i113 1
 R12
 R13
@@ -739,11 +739,11 @@ VVC_UMSHCMZ0ZjZb?b0]zR2
 !s100 :ofzCZI><5;`;;eFLA`e^0
 R7
 32
-R59
+R83
 !i10b 1
-R60
-R102
-R103
+R89
+R95
+R96
 !i113 1
 R12
 R13
@@ -753,19 +753,19 @@ R1
 R2
 R3
 R4
-Z104 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd
-Z105 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd
+Z97 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd
+Z98 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd
 l0
 L5
 VWkPCnPjgJ@?OL:1K=EhAY0
 !s100 DQiV1c^OWB6m=H;BTE?`X1
 R7
 32
-R59
+R83
 !i10b 1
-R60
-Z106 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd|
-Z107 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd|
+R89
+Z99 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd|
+Z100 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/SignExtend.vhd|
 !i113 1
 R12
 R13
@@ -780,11 +780,11 @@ VQeW;98mYIRiG=4NEl<I7a0
 !s100 <Y?dGfdmo111XlQHCR5L_1
 R7
 32
-R59
+R83
 !i10b 1
-R60
-R106
-R107
+R89
+R99
+R100
 !i113 1
 R12
 R13
@@ -793,19 +793,19 @@ R0
 R2
 R3
 R4
-Z108 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd
-Z109 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd
+Z101 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd
+Z102 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd
 l0
 L4
 V=Vc0aebo^gHJlODPe17Yk2
 !s100 REFgUgOb7Vd:DACo9;1R20
 R7
 32
-R8
+R83
 !i10b 1
-R9
-Z110 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd|
-Z111 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd|
+R89
+Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd|
+Z104 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/Tri-State.vhd|
 !i113 1
 R12
 R13
@@ -819,33 +819,33 @@ VAn?Fm9c8WfbL26VfJZec;1
 !s100 j<H0jS>IA3aFSX73950XI2
 R7
 32
-R8
+R83
 !i10b 1
-R9
-R110
-R111
+R89
+R103
+R104
 !i113 1
 R12
 R13
 Ewb_stage
-Z112 w1653826608
+R35
 R1
 R2
 R3
-R48
-Z113 8C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\WB_Stage.vhd
-Z114 FC:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\WB_Stage.vhd
+R4
+Z105 8C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/WB_Stage.vhd
+Z106 FC:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/WB_Stage.vhd
 l0
 L7
 V3I_W1f1IMXm_L0^RLzcBb3
 !s100 4P2FJG_7ji2:kbiC2nOW`1
 R7
 32
-Z115 !s110 1653826691
+R8
 !i10b 1
-Z116 !s108 1653826691.000000
-Z117 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\WB_Stage.vhd|
-Z118 !s107 C:\Users\karim\Documents\GitHub\Arch-Project-Processor\Processor\WB_Stage.vhd|
+Z107 !s108 1653834890.000000
+Z108 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/WB_Stage.vhd|
+Z109 !s107 C:/Users/Zaka/Desktop/Courses/Arch/Arch-Project-Processor/Processor/WB_Stage.vhd|
 !i113 1
 R12
 R13
@@ -860,11 +860,11 @@ V88D8bJn6nCJ1b^8PBSR9i3
 !s100 U`gPSd<cnjliBo=h6@E1=2
 R7
 32
-R115
+R8
 !i10b 1
-R116
-R117
-R118
+R107
+R108
+R109
 !i113 1
 R12
 R13
