@@ -20,7 +20,7 @@ port(
     Alu_result_o : out std_logic_vector(31 downto 0);
     memory_result_o : out std_logic_vector(31 downto 0);
     writeback_mux_en_o : out std_logic;
-    decoder_en_o : out std_logic;
+    decoder_en_o : out std_logic
 );
 end fetch_stage;
 
@@ -103,35 +103,111 @@ end component;
 
 
 --signals
+signal we : std_logic;
+signal re : std_logic;
+signal address : std_logic_vector(19 downto 0);
+signal data_in : std_logic_vector(31 downto 0);
+signal data_out : std_logic_vector(31 downto 0);
+signal PC : std_logic_vector(31 downto 0);
+signal PC_plus_one : std_logic_vector(31 downto 0);
+signal pc_en : std_logic;
+signal pc_data : std_logic_vector(31 downto 0);
+signal pc_data_out : std_logic_vector(31 downto 0);
+signal buf_IF_ID_instruction : std_logic_vector(31 downto 0);
+signal buf_IF_ID_PC : std_logic_vector(31 downto 0);
+signal buf_IF_ID_instruction_o : std_logic_vector(31 downto 0);
+signal buf_IF_ID_PC_o : std_logic_vector(31 downto 0);
 
+signal buf_MEM_WB_Rdst_o : std_logic_vector(2 downto 0);
+signal buf_MEM_WB_alu_result_o : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_mem_result_o : std_logic_vector(31 downto 0);
+signal buf_MEM_WB_writeback_en_o : std_logic;
+signal buf_MEM_WB_decoder_en_o : std_logic;
+signal mem_result : std_logic_vector(31 downto 0);
 
 begin
 --processes
-process 
 
-  
+process (clk)
+begin
+if falling_edge(clk) then
+if rst = '1' then
+    buf_IF_ID_instruction <= (others => '0');
+    buf_IF_ID_PC <= (others => '0');
+    we <= '0';
+    pc_en <= '1';
+    re <= '1';
+    
+    address <= (others => '0'); 
+    pc_data <= data_out;
+    pc <= data_out;
+
+elsif rst = '0' and mem_read_en = '0' and  mem_write_en = '0' then
+    re <= '1';
+    we <= '0';
+    pc_en <= '1';
+    
+    address <= pc_data_out(19 downto 0); 
+    buf_IF_ID_instruction<= data_out;
+    buf_IF_ID_PC <= PC_data_out;
+    Pc_data <= pc_plus_one;
+    pc <= Pc_data_out;
+
+else
+        
+end if;        
+end if;
 end PROCESS;
+
+
 
 --First stage
 Memory_OBJ: Memory PORT MAP (
-  
+    clk, 
+    we,
+    re,
+    address,
+    data_in,
+    data_out
 );
 
 ADDER_OBJ: Adder PORT MAP (
- 
+    PC,
+    PC_Plus_One
 );
+ 
 
 PC_OBJ: PC_Reg Port Map (
-
+    clk,rst,
+    pc_en,
+    pc_data,
+    pc_data_out
 );
 
 
 BUF_IF_ID_OBJ: buf_IF_ID PORT MAP (
-
+    rst,
+    clk,
+    buf_IF_ID_instruction,
+    buf_IF_ID_PC,
+    buf_IF_ID_instruction_o,
+    buf_IF_ID_PC_o
 );
 
 
 buf_MEM_WB_OBJ: buf_MEM_WB Port map(
+    rst,
+    clk,
+    Alu_result,
+    Rdst,
+    mem_result,
+    writeback_mux_en,
+    decoder_en,
+    buf_MEM_WB_Rdst_o,
+    buf_MEM_WB_alu_result_o,
+    buf_MEM_WB_mem_result_o,
+    buf_MEM_WB_writeback_en_o,
+    buf_MEM_WB_decoder_en_o
 
 );
 
