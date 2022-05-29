@@ -7,12 +7,16 @@ use ieee.numeric_std.all;
 entity fetch_stage is 
 port(
     clk,rst : in std_logic;
+    Interrupt : in std_logic;
     Alu_result : in std_logic_vector(31 downto 0);
     Rdst : in std_logic_vector(2 downto 0);
     writeback_mux_en : in std_logic;
     decoder_en : in std_logic; 
     mem_read_en : in std_logic;
     mem_write_en : in std_logic;
+
+    jump_en : in std_logic;
+    jump_target : in std_logic_vector(19 downto 0);
     
     instruction_o : out std_logic_vector(31 downto 0);
     pc_o : out std_logic_vector(31 downto 0);
@@ -124,6 +128,8 @@ signal buf_MEM_WB_writeback_en_o : std_logic;
 signal buf_MEM_WB_decoder_en_o : std_logic;
 signal mem_result : std_logic_vector(31 downto 0);
 
+signal SP : std_logic_vector(19 downto 0);
+signal SP_minus_one : std_logic_vector(19 downto 0);
 
 --variables
 
@@ -131,7 +137,7 @@ begin
 --processes
 
 
-process (clk,rst)
+process (clk,rst,Interrupt)
 variable PC_Input : std_logic_vector(31 downto 0);
 variable Adder_input : std_logic_vector(31 downto 0);
 variable Memory_Address_input : std_logic_vector(19 downto 0);
@@ -139,7 +145,35 @@ variable Output_of_Memory : std_logic_vector(31 downto 0);
 begin
     Output_of_Memory := data_out;
     PC_Input := PC_Plus_One;
+    if Interrupt = '1' then
+        we <= '1';
+        Memory_Address_input := SP;
+        data_in <= pc_data;
+
+        we <= '0';
+        --Memory
+        Memory_Address_input := "00000000000000000001";
+        Output_of_Memory := data_out;
+
+        --PC register
+        PC_Input := PC_Plus_One;
+
+        --Adder
+        -- output of memory - 1
+        Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
+
+        --buf_IF_ID
+        buf_IF_ID_instruction<= Output_of_Memory;
+        buf_IF_ID_PC <= "00000000000000000000000000000001";
+        
+
+        SP_minus_one <= std_logic_vector(to_signed((to_integer(signed(SP)) - 1),20));
+        SP <= SP_minus_one;
+
+        
+    end if;
     if rst = '1' then
+        SP <= (others => '1');
         we <= '0';
         --Memory
         Memory_Address_input := (others => '0');
@@ -155,8 +189,8 @@ begin
         --buf_IF_ID
         buf_IF_ID_instruction<= (others => '0');
         buf_IF_ID_PC <= (others => '0');
-end IF; 
-    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' then
+    end IF; 
+    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' then
         --PC register
         PC_Input := PC_Plus_One;
 
@@ -171,6 +205,25 @@ end IF;
          buf_IF_ID_instruction<= Output_of_Memory;
          buf_IF_ID_PC <= pc_data;
 end if;
+
+    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' and jump_en = '1' then
+     --Memory
+     Memory_Address_input := jump_target;
+     Output_of_Memory := data_out;
+
+     --PC register
+     PC_Input := PC_Plus_One;
+
+     --Adder
+     -- output of memory - 1
+     Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
+
+     --buf_IF_ID
+     buf_IF_ID_instruction<= Output_of_Memory;
+     buf_IF_ID_PC <= jump_target;    
+
+
+    end if;
 
 address <= Memory_Address_input;
 PC <= Adder_input;

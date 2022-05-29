@@ -8,6 +8,7 @@ use ieee.numeric_std.all;
 ENTITY Integrated_Design is 
 Port(
     clk, rst : in std_logic;
+    Interrupt : in std_logic;
     input_port : in std_logic_vector(31 downto 0);
     output_port : out std_logic_vector(31 downto 0);
     R0: out std_logic_vector(31 downto 0);
@@ -32,6 +33,7 @@ ARCHITECTURE Arch of Integrated_Design is
 Component fetch_stage is 
 port(
     clk,rst : in std_logic;
+    Interrupt : in std_logic; 
     Alu_result : in std_logic_vector(31 downto 0);
     Rdst : in std_logic_vector(2 downto 0);
     writeback_mux_en : in std_logic;
@@ -181,11 +183,25 @@ Signal WB_Decode_writeback_result : std_logic_vector(31 downto 0);
 Signal WB_Decode_rdst : std_logic_vector(2 downto 0);
 Signal WB_Decode_decoder_en : std_logic;
 
+Signal R0_signal : std_logic_vector(31 downto 0);
+Signal R1_signal : std_logic_vector(31 downto 0);
+Signal R2_signal : std_logic_vector(31 downto 0);
+Signal R3_signal : std_logic_vector(31 downto 0);
+Signal R4_signal : std_logic_vector(31 downto 0);
+Signal R5_signal : std_logic_vector(31 downto 0);
+Signal R6_signal : std_logic_vector(31 downto 0);
+Signal R7_signal : std_logic_vector(31 downto 0);
+
+Signal Cf_signal : std_logic;
+Signal Nf_signal : std_logic;
+Signal Zf_signal : std_logic;
+
 
 
 begin
     FETCH_MEM_BUF: fetch_stage Port Map (
         clk,rst,
+        Interrupt,
         EX_MEM_ALU_result,
         EX_MEM_Rdst,
         EX_MEM_wtieback_mux_en,
@@ -223,14 +239,14 @@ begin
         Decode_EX_adder_branch_mux,
         Decode_EX_result_adder_branch_mux_with_old_pc,
         Decode_EX_decoder_enable_wb_stage,
-        R0,
-        R1,
-        R2,
-        R3,
-        R4,
-        R5,
-        R6,
-        R7
+        R0_signal,
+        R1_signal,
+        R2_signal,
+        R3_signal,
+        R4_signal,
+        R5_signal,
+        R6_signal,
+        R7_signal
     );
 
     EX_MEM_BUF: execute_stage Port Map (
@@ -258,9 +274,9 @@ begin
         EX_MEM_wtieback_mux_en,
         EX_MEM_decoder_en,
         output_port,
-        Cf,
-        Nf,
-        Zf
+        Cf_signal,
+        Nf_signal,
+        Zf_signal
     );
 
     MEM_WB_BUF: wb_stage Port Map (
@@ -273,6 +289,20 @@ begin
         WB_Decode_rdst,
         WB_Decode_decoder_en
     );
+
+    R0 <= R0_signal;
+    R1 <= R1_signal;
+    R2 <= R2_signal;
+    R3 <= R3_signal;
+    R4 <= R4_signal;
+    R5 <= R5_signal;
+    R6 <= R6_signal;
+    R7 <= R7_signal;
+
+    Cf <= Cf_signal;
+    Nf <= Nf_signal;
+    Zf <= Zf_signal;
+
 
 
 end Arch;
