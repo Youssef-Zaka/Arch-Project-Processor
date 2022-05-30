@@ -142,6 +142,7 @@ variable PC_Input : std_logic_vector(31 downto 0);
 variable Adder_input : std_logic_vector(31 downto 0);
 variable Memory_Address_input : std_logic_vector(19 downto 0);
 variable Output_of_Memory : std_logic_vector(31 downto 0);
+variable Temp : std_logic_vector(31 downto 0);
 begin
     Output_of_Memory := data_out;
     PC_Input := PC_Plus_One;
@@ -160,14 +161,14 @@ begin
 
         --Adder
         -- output of memory - 1
-        Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
+        Adder_input :=  std_logic_vector(to_unsigned((to_integer(unsigned(Output_of_Memory)) - 1),32));
 
         --buf_IF_ID
         buf_IF_ID_instruction<= Output_of_Memory;
         buf_IF_ID_PC <= "00000000000000000000000000000001";
         
 
-        SP_minus_one <= std_logic_vector(to_signed((to_integer(signed(SP)) - 1),20));
+        SP_minus_one <= std_logic_vector(to_unsigned((to_integer(unsigned(SP)) - 1),20));
         SP <= SP_minus_one;
 
         
@@ -211,14 +212,13 @@ end if;
      we <= '0';
      Memory_Address_input := jump_target(19 downto 0);
      Output_of_Memory := data_out;
-
-     --PC register
-     PC_Input := PC_Plus_One;
-
      --Adder
      -- output of memory - 1
-     Adder_input :=  std_logic_vector(to_signed((to_integer(signed(Output_of_Memory)) - 1),32));
+     Temp :=  std_logic_vector(to_signed((to_integer(signed(jump_target)) - 1),32));
+     Adder_input :=  Temp;
 
+    --  PC_Input := x"00000030";
+    pc_INPUT := PC_Plus_One;
      --buf_IF_ID
      buf_IF_ID_instruction<= Output_of_Memory;
      buf_IF_ID_PC <= jump_target;    

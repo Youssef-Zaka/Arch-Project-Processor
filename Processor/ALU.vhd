@@ -19,12 +19,18 @@ ARCHITECTURE alu_arch OF ALU IS
 	signal negative_flag: std_logic;
 	
 	BEGIn
-	process (data_1,data_2,cin)
+	process (data_1,data_2,cin,alu_enable,sel)
 	variable temp : Integer;
 	begin
 	
 	if (alu_enable = '1') then
 --------------------------------------------------------------
+	-- if (sel = "1111") then
+	-- if Zero_flag = '1' then
+			
+
+
+	-- end if;
 
 	if (sel = "0000") then -- not operation 000
 	result <= (Not (data_1));
@@ -41,7 +47,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	negative_flag <= '0';
 	end if;
 	flag_enable <= '1';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 -------------------------------------------------------------
@@ -66,7 +73,7 @@ ARCHITECTURE alu_arch OF ALU IS
 	negative_flag <= '0';
 	end if;
 	flag_enable <= '1';
-	flags <= carry_flag & zero_flag & negative_flag;
+
 	end if;
 	
 --------------------------------------------------------------
@@ -88,7 +95,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	negative_flag <= '0';
 	end if;
 	flag_enable <= '1';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 ------------------------------------------------------------------
@@ -111,7 +119,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	negative_flag <= '0';
 	end if;
 	flag_enable <= '1';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 -------------------------------------------------------------------
@@ -132,7 +141,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	negative_flag <= '0';
 	end if;
 	flag_enable <= '1';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 ---------------------------------------------------------------------
@@ -140,7 +150,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	if (sel = "0101") then  -- pass first argument 0101
 	result <= data_1;
 	flag_enable <= '0';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 ----------------------------------------------------------------------
@@ -148,7 +159,8 @@ ARCHITECTURE alu_arch OF ALU IS
 	if (sel = "0110") then  -- nop 0110
 	result <= (others=>'0');
 	flag_enable <= '0';
-	flags <= cin & zero_flag & negative_flag;
+	carry_flag <= cin;
+
 	end if;
 
 -----------------------------------------------------------------------
@@ -156,16 +168,24 @@ ARCHITECTURE alu_arch OF ALU IS
 	if (sel = "0111") then  -- setc 0111
 	result <= (others=>'0');
 	flag_enable <= '1';
-	flags <= '1' & "00";
+	carry_flag <= '1';
+
 	end if;
 
 ------------------------------------------------------------------------
 
 	
 	else 
-	flags <= '0' & "00";
+
 	result <= (others=>'0');
 	flag_enable <= '0'; 
+	carry_flag <= '0';
+	zero_flag <= '0';
+	negative_flag <= '0';
 	end if; -- if enable
 	end process;
+
+
+	flags <= carry_flag & zero_flag & negative_flag;
+	
 end Architecture;

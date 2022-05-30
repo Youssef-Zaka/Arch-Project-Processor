@@ -126,6 +126,8 @@ signal data_out_reg : std_logic_vector(31 downto 0);
 signal Alu_result_bef_buf : std_logic_vector(31 downto 0);
 signal jump_true : std_logic;
 signal OpCode_input_to_alu : std_logic_vector(3 downto 0);
+signal flag_en_from_Alu : std_logic;
+signal flags_from_alu : std_logic_vector(2 downto 0);
 
 begin
     process(jump_selector)
@@ -154,16 +156,26 @@ begin
             end if;
         end if;
     end process;
-    process (rst)
+    -- process (rst)
+    -- begin
+    --     if rst = '1' then
+    --         OpCode_input_to_alu <= "0110";
+    --     else
+    --         OpCode_input_to_alu <= alu_op_code;
+    --     end if;
+    -- end process;
+     process (rst)
     begin
         if rst = '1' then
-            OpCode_input_to_alu <= "0110";
+            flagsEn <= '1';
+            flags <= "000";
         else
-            OpCode_input_to_alu <= alu_op_code;
+            flagsEn <= flag_en_from_Alu;
+            flags <= flags_from_alu;
         end if;
     end process;
 
-    ALU_OBJ: ALU port map(data_1_o, data_2_o, OpCode_input_to_alu, Cin, alu_en_o, ResultfromALu, flagsEn, flags); 
+    ALU_OBJ: ALU port map(data_1_o, data_2_o, alu_op_code, Cin, alu_en_o, ResultfromALu, flag_en_from_Alu, flags_from_alu); 
     Flag_Register_OBJ: flagReg port map(clk,rst,flagsEn, flags(2),flags(0),flags(1), Cin, N_flag, Z_flag);
 
 
