@@ -395,5 +395,27 @@ mem_wb_enable <= '1';
 wb_reg_enable <= '0';
 end if;
 
+if (opcode = "1000000") then -- ldm
+mux_data_1 <= '0';
+mux_data_2 <= '1';
+alu_op_code <= "1101";
+alu_enable <= '1';
+input_port_enable <= '0';
+output_port_enable <= '0';
+mem_read_enable <= '0';
+mem_write_enable <= '0';
+mux_wb <= '0';
+jump_select <= "000";
+if_id_reset <= '0';
+id_ex_reset <= '0';
+ex_mem_reset <= '0';
+mem_wb_reset <= '0';
+if_id_enable <= '1';
+id_ex_enable <= '1';
+ex_mem_enable <= '1';
+mem_wb_enable <= '1';
+wb_reg_enable <= '1';
+end if;
+
 END PROCESS;
 END Architecture;

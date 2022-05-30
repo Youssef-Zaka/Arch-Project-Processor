@@ -22,7 +22,7 @@ decoder_wb_en: in std_logic;
 
 jump_enable : in std_logic;
 jump_target : in std_logic_vector(31 downto 0);
-
+immediate_i_s : in std_logic_vector(31 downto 0);
 --outputs for all inputs
 Rdst_o : out std_logic_vector(2 downto 0);
 alu_result_o : out std_logic_vector(31 downto 0);
@@ -30,8 +30,8 @@ mem_read_en_o, mem_write_en_o : out std_logic;
 writeback_en_o : out std_logic;
 decoder_wb_en_o: out std_logic;
 jump_enable_o : out std_logic;
-jump_target_o : out std_logic_vector(31 downto 0)
-
+jump_target_o : out std_logic_vector(31 downto 0);
+immediate_o_s : out std_logic_vector(31 downto 0)
 );
 end buf_EX_MEM;
 
@@ -50,6 +50,7 @@ if (rst = '1') then
     decoder_wb_en_o <= '0';
     jump_enable_o <= '0';
     jump_target_o <= (others => '0');
+    immediate_o_s <= (others => '0');
    
 elsif rising_edge(clk) then
     --pass input to outputs
@@ -62,6 +63,7 @@ elsif rising_edge(clk) then
     decoder_wb_en_o <= decoder_wb_en;
     jump_enable_o <= jump_enable;
     jump_target_o <= jump_target;
+    immediate_o_s <= immediate_i_s;
 end if;
 end process;
 end buf_arch;

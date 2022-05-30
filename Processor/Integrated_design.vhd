@@ -40,6 +40,7 @@ port(
     decoder_en : in std_logic; 
     mem_read_en : in std_logic;
     mem_write_en : in std_logic;
+    immediate : in std_logic_vector(31 downto 0);
 
     jump_en : in std_logic;
     jump_target : in std_logic_vector(31 downto 0);
@@ -90,36 +91,37 @@ end Component;
 
 Component execute_stage is
     PORT(
-        clk : IN STD_LOGIC;
-        rst : IN STD_LOGIC;
-        InPort : IN STD_LOGIC_VECTOR(31 downto 0);
-        data_1_o : in std_logic_vector(31 downto 0);
-        data_2_o : in std_logic_vector(31 downto 0);
-        rdst_o : in std_logic_vector(2 downto 0);
-        immediate_o : in std_logic_vector(31 downto 0);
-        pc_o : in std_logic_vector(31 downto 0);
-        alu_op_code : in std_logic_vector(3 downto 0);
-        mem_read_o : in std_logic;
-        mem_write_o : in std_logic; 
-        input_o : in std_logic;
-        writeback_mux_o : in std_logic;
-        alu_en_o: in std_logic;
-        output_o : in std_logic;
-        decoder_enable_wb_stage : in std_logic;
-        Jump_selector : in std_logic_vector(2 downto 0);
-        Alu_result : out std_logic_vector(31 downto 0);
-        Rdst : out std_logic_vector(2 downto 0);
-        mem_read : out std_logic;
-        mem_write : out std_logic;
-        writeback_mux : out std_logic;
-        decoder_enable : out std_logic;
-        OutputPort : out STD_LOGIC_VECTOR(31 downto 0);
-        C : out std_logic;
-        N : out std_logic;
-        Z : out std_logic;
-        jump_enable : out std_logic;
-        jump_target : out std_logic_vector(31 downto 0)
-        );
+    clk : IN STD_LOGIC;
+    rst : IN STD_LOGIC;
+    InPort : IN STD_LOGIC_VECTOR(31 downto 0);
+    data_1_o : in std_logic_vector(31 downto 0);
+    data_2_o : in std_logic_vector(31 downto 0);
+    rdst_o : in std_logic_vector(2 downto 0);
+    immediate_o : in std_logic_vector(31 downto 0);
+    pc_o : in std_logic_vector(31 downto 0);
+    alu_op_code : in std_logic_vector(3 downto 0);
+    mem_read_o : in std_logic;
+    mem_write_o : in std_logic; 
+    input_o : in std_logic;
+    writeback_mux_o : in std_logic;
+    alu_en_o: in std_logic;
+    output_o : in std_logic;
+    decoder_enable_wb_stage : in std_logic;
+    Jump_selector : in std_logic_vector(2 downto 0);
+    Alu_result : out std_logic_vector(31 downto 0);
+    Rdst : out std_logic_vector(2 downto 0);
+    mem_read : out std_logic;
+    mem_write : out std_logic;
+    writeback_mux : out std_logic;
+    decoder_enable : out std_logic;
+    OutputPort : out STD_LOGIC_VECTOR(31 downto 0);
+    C : out std_logic;
+    N : out std_logic;
+    Z : out std_logic;
+    jump_enable : out std_logic;
+    jump_target : out std_logic_vector(31 downto 0);
+    immediate_ray7_mem : out std_logic_vector(31 downto 0)
+    );
 end Component;
 
 Component wb_stage is
@@ -174,6 +176,7 @@ signal EX_MEM_mem_read_en : std_logic;
 signal EX_MEM_mem_write_en : std_logic;
 signal EX_MEM_jump_enable : std_logic;
 signal EX_MEM_jump_target : std_logic_vector(31 downto 0);
+signal EX_MEM_immediate_ray7_mem : std_logic_vector(31 downto 0);
 
 -- --Memory - Writeback -- outputs
 -- signal MEM_WB_ALU_result : std_logic_vector(31 downto 0);
@@ -212,6 +215,7 @@ begin
         EX_MEM_decoder_en,
         EX_MEM_mem_read_en,
         EX_MEM_mem_write_en,
+        EX_MEM_immediate_ray7_mem,
         EX_MEM_jump_enable,
         EX_MEM_jump_target,
         Fetch_Decode_instruction,
@@ -282,7 +286,8 @@ begin
         Nf_signal,
         Zf_signal,
         EX_MEM_jump_enable,
-        EX_MEM_jump_target
+        EX_MEM_jump_target,
+        EX_MEM_immediate_ray7_mem
     );
 
     MEM_WB_BUF: wb_stage Port Map (

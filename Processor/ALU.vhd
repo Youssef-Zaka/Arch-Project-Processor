@@ -148,6 +148,13 @@ ARCHITECTURE alu_arch OF ALU IS
 
 	end if;
 
+	if (sel = "1101") then  -- pass first argument 0101
+	result <= data_2;
+	flag_enable <= '0';
+	carry_flag <= cin;
+
+	end if;
+
 ----------------------------------------------------------------------
 
 	if (sel = "0110") then  -- nop 0110

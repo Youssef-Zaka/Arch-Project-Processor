@@ -14,6 +14,7 @@ port(
     decoder_en : in std_logic; 
     mem_read_en : in std_logic;
     mem_write_en : in std_logic;
+    immediate : in std_logic_vector(31 downto 0);
 
     jump_en : in std_logic;
     jump_target : in std_logic_vector(31 downto 0);
@@ -225,6 +226,16 @@ end if;
 
 
     end if;
+
+    if rst = '0' and mem_read_en = '1' and mem_write_en = '0' and Interrupt = '0' and jump_en = '0' then
+        --PC register
+        Memory_Address_input := immediate (19 downto 0);
+        memory_result_o <= Output_of_Memory;
+        buf_IF_ID_instruction <= (others=>'0');
+        buf_IF_ID_PC <= (others=>'0'); 
+        Adder_input :=  std_logic_vector(to_signed((to_integer(signed(pc_data_out)) - 1),32));
+
+end if;
 
 address <= Memory_Address_input;
 PC <= Adder_input;

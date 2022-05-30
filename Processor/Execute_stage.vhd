@@ -34,7 +34,8 @@ PORT(
     N : out std_logic;
     Z : out std_logic;
     jump_enable : out std_logic;
-    jump_target : out std_logic_vector(31 downto 0)
+    jump_target : out std_logic_vector(31 downto 0);
+    immediate_ray7_mem : out std_logic_vector(31 downto 0)
     );
     end execute_stage;
 
@@ -71,7 +72,7 @@ decoder_wb_en: in std_logic;
 
 jump_enable : in std_logic;
 jump_target : in std_logic_vector(31 downto 0);
-
+immediate_i_s : in std_logic_vector(31 downto 0);
 --outputs for all inputs
 Rdst_o : out std_logic_vector(2 downto 0);
 alu_result_o : out std_logic_vector(31 downto 0);
@@ -79,8 +80,8 @@ mem_read_en_o, mem_write_en_o : out std_logic;
 writeback_en_o : out std_logic;
 decoder_wb_en_o: out std_logic;
 jump_enable_o : out std_logic;
-jump_target_o : out std_logic_vector(31 downto 0)
-
+jump_target_o : out std_logic_vector(31 downto 0);
+immediate_o_s : out std_logic_vector(31 downto 0)
 );
 end component; 
 
@@ -129,16 +130,22 @@ signal OpCode_input_to_alu : std_logic_vector(3 downto 0);
 signal flag_en_from_Alu : std_logic;
 signal flags_from_alu : std_logic_vector(2 downto 0);
 
+signal Z_flag_overwrite : std_logic;
+
 begin
     process(jump_selector)
     begin
+        Z_flag_overwrite <= flags(1);
+        flagsEn <= '1';
         if jump_selector = "000" then
             jump_true <= '0';
+            flagsEn <= '0';
         elsif jump_selector = "001" then
             jump_true <= '1';
         elsif jump_selector = "010" then
             if Z_flag = '1' then
                 jump_true <= '1';
+                Z_flag_overwrite <= '0';
             else
                 jump_true <= '0';
             end if;
@@ -164,31 +171,32 @@ begin
     --         OpCode_input_to_alu <= alu_op_code;
     --     end if;
     -- end process;
-     process (rst)
+     process (rst,clk)
     begin
         if rst = '1' then
             flagsEn <= '1';
             flags <= "000";
-        else
+        elsif jump_selector = "000" then
             flagsEn <= flag_en_from_Alu;
             flags <= flags_from_alu;
         end if;
     end process;
 
     ALU_OBJ: ALU port map(data_1_o, data_2_o, alu_op_code, Cin, alu_en_o, ResultfromALu, flag_en_from_Alu, flags_from_alu); 
-    Flag_Register_OBJ: flagReg port map(clk,rst,flagsEn, flags(2),flags(0),flags(1), Cin, N_flag, Z_flag);
+    Flag_Register_OBJ: flagReg port map(clk,rst,flagsEn, flags(2),flags(0),Z_flag_overwrite, Cin, N_flag, Z_flag);
 
 
     Alu_result_bef_buf <= ResultfromALu when input_o = '0' else InPort;
     
     OutReg: reg port map (clk,rst,output_o,Alu_result_bef_buf, data_out_reg);
 
-    buf: buf_EX_MEM port map(rst, clk, Alu_result_bef_buf ,rdst_o, mem_read_o, mem_write_o, writeback_mux_o,decoder_enable_wb_stage,jump_true,immediate_o  ,Rdst, Alu_result, mem_read, mem_write, writeback_mux, decoder_enable, jump_enable, jump_target);
+    buf: buf_EX_MEM port map(rst, clk, Alu_result_bef_buf ,rdst_o, mem_read_o, mem_write_o, writeback_mux_o,decoder_enable_wb_stage,jump_true,immediate_o,immediate_o,Rdst, Alu_result, mem_read, mem_write, writeback_mux, decoder_enable, jump_enable, jump_target,immediate_ray7_mem);
 
     OutputPort <= data_out_reg;
 
     C <=  Cin;
     N <=  N_flag;
     Z <=  Z_flag;
+    immediate_ray7_mem <= immediate_o;
 
 end execute_stage_arch;

@@ -13,9 +13,9 @@ BEGIN
 PROCESS (Clk,Rst)
 BEGIN
 IF Rst = '1' THEN
-c_o <= '0';
+c_o <= '1';
 n_o <= '0';
-z_o <= '0';
+z_o <= '1';
 ELSIF falling_edge(Clk) and En = '1' THEN
 c_o <= c;
 n_o <= n;

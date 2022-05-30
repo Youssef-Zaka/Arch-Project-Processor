@@ -23,7 +23,7 @@ ARCHITECTURE syncrama OF Memory IS
 	--Memory Type
 	TYPE mem_type IS ARRAY(0 TO 2 ** 20 - 1) OF std_logic_vector(31 DOWNTO 0);
 	impure function init_ram_bin return mem_type is
-		file text_file : text open read_mode is "../assembler/BranchNOP.txt";
+		file text_file : text open read_mode is "../assembler/Memory.txt";
 		variable text_line : line;
 		variable ram_content : mem_type;
 		variable bv : bit_vector(ram_content(0)'range);
