@@ -1,5 +1,56 @@
-
 vsim -gui work.integrated_design
+# End time: 14:11:19 on May 30,2022, Elapsed time: 0:01:21
+# Errors: 0, Warnings: 4
+# vsim -gui work.integrated_design 
+# Start time: 14:11:19 on May 30,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integrated_design(arch)
+# Loading work.fetch_stage(arch)
+# Loading work.memory(syncrama)
+# Loading work.adder(arch)
+# Loading work.pc_reg(regarch)
+# Loading work.buf_if_id(buf_arch)
+# Loading work.buf_mem_wb(buf_arch)
+# Loading work.decoder_stage(decode_arch)
+# Loading work.control_unit(cuarch)
+# Loading work.decoder(decoder_arch)
+# Loading work.reg(regarch)
+# Loading work.mux_3x8(when_else_mux_3x8)
+# Loading work.signextend(signextend_arch)
+# Loading work.buf_id_ex(buf_arch)
+# Loading work.execute_stage(execute_stage_arch)
+# Loading work.alu(alu_arch)
+# Loading work.flagreg(flagreg_arch)
+# Loading work.buf_ex_mem(buf_arch)
+# Loading work.wb_stage(wb_stage_arch)
+# vsim -gui work.integrated_design 
+# Start time: 14:06:35 on May 30,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.integrated_design(arch)
+# Loading work.fetch_stage(arch)
+# Loading work.memory(syncrama)
+# Loading work.adder(arch)
+# Loading work.pc_reg(regarch)
+# Loading work.buf_if_id(buf_arch)
+# Loading work.buf_mem_wb(buf_arch)
+# Loading work.decoder_stage(decode_arch)
+# Loading work.control_unit(cuarch)
+# Loading work.decoder(decoder_arch)
+# Loading work.reg(regarch)
+# Loading work.mux_3x8(when_else_mux_3x8)
+# Loading work.signextend(signextend_arch)
+# Loading work.buf_id_ex(buf_arch)
+# Loading work.execute_stage(execute_stage_arch)
+# Loading work.alu(alu_arch)
+# Loading work.flagreg(flagreg_arch)
+# Loading work.buf_ex_mem(buf_arch)
+# Loading work.wb_stage(wb_stage_arch)
 # vsim -gui work.integrated_design 
 # Start time: 08:32:12 on May 30,2022
 # Loading std.standard
@@ -122,6 +173,24 @@ force -freeze sim:/integrated_design/input_port 16#00000005 0
 run
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: Zaka  Hostname: ZAKAS-DESKTOP  ProcessID: 6264
+#           Attempting to use alternate WLF file "./wlft3fczae".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft3fczae
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF/ADDER_OBJ
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Zaka  Hostname: ZAKAS-DESKTOP  ProcessID: 6264
+#           Attempting to use alternate WLF file "./wlftm4wxwf".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftm4wxwf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF/ADDER_OBJ
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Zaka  Hostname: ZAKAS-DESKTOP  ProcessID: 6264
 #           Attempting to use alternate WLF file "./wlfttdvakh".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
 #           Using alternate file: ./wlfttdvakh
@@ -148,8 +217,73 @@ run
 run
 run
 run
-run
-run
-run
-run
 
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/integrated_design/input_port 16#00000010 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/integrated_design/Interrupt 1 0
+run
+# ** Error: (vsim-86) Argument value -1 is not in bounds of subtype NATURAL.
+#    Time: 5200 ps  Iteration: 3  Instance: /integrated_design/FETCH_MEM_BUF
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5250 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF
+# ** Error: (vsim-86) Argument value -1 is not in bounds of subtype NATURAL.
+#    Time: 5250 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF
+force -freeze sim:/integrated_design/Interrupt 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/integrated_design/Interrupt 1 0
+run
+# ** Error: (vsim-86) Argument value -1 is not in bounds of subtype NATURAL.
+#    Time: 6200 ps  Iteration: 3  Instance: /integrated_design/FETCH_MEM_BUF
+# ** Error: (vsim-86) Argument value -1 is not in bounds of subtype NATURAL.
+#    Time: 6300 ps  Iteration: 0  Instance: /integrated_design/FETCH_MEM_BUF
+run
+force -freeze sim:/integrated_design/Interrupt 0 0
+run
+run
+run
+run
+run

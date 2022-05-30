@@ -25,17 +25,11 @@ ARCHITECTURE alu_arch OF ALU IS
 	
 	if (alu_enable = '1') then
 --------------------------------------------------------------
-	-- if (sel = "1111") then
-	-- if Zero_flag = '1' then
-			
-
-
-	-- end if;
 
 	if (sel = "0000") then -- not operation 000
 	result <= (Not (data_1));
 
-	if (data_1 = (x"11111111")) then  -- zero flag if
+	if to_integer(signed(Not (data_1))) = 0 then  -- zero flag if
 	zero_flag <= '1';
 	else
 	zero_flag<= '0'; 

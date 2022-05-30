@@ -311,8 +311,8 @@ end if;
 if (opcode = "1100011") then -- JZ
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "1111";
-alu_enable <= '1';
+alu_op_code <= "0010";
+alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
 mem_read_enable <= '0';
@@ -333,8 +333,8 @@ end if;
 if (opcode = "1100100") then -- JN
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "1110";
-alu_enable <= '1';
+alu_op_code <= "0010";
+alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
 mem_read_enable <= '0';
@@ -354,8 +354,8 @@ end if;
 if (opcode = "1100101") then -- JC
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "1100";
-alu_enable <= '1';
+alu_op_code <= "0010";
+alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
 mem_read_enable <= '0';
@@ -376,7 +376,7 @@ end if;
 if (opcode = "1100110") then -- JMP
 mux_data_1 <= '0';
 mux_data_2 <= '0';
-alu_op_code <= "1000";
+alu_op_code <= "0010";
 alu_enable <= '0';
 input_port_enable <= '0';
 output_port_enable <= '0';
