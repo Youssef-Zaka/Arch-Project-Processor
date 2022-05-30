@@ -25,12 +25,13 @@ InPort_en : in std_logic;
 --1 bit enable writeback
 writeback_en : in std_logic;
 
+
+
 --added
 
 alu_en: in std_logic;
 OutPort_en: in std_logic;
-add_branch_mux: in std_logic;
-muxresult_oldpc_mux : in std_logic;
+Jump_select : in std_logic_vector(2 downto 0);
 wb_reg_enable: in std_logic;  
 
 
@@ -47,8 +48,7 @@ InPort_en_o : out std_logic;
 writeback_en_o : out std_logic;
 alu_en_o: out std_logic;
 OutPort_en_o: out std_logic;
-add_branch_mux_o: out std_logic;
-muxresult_oldpc_mux_o : out std_logic;
+Jump_select_o : out std_logic_vector(2 downto 0);
 wb_reg_enable_o: out std_logic
 );
 end buf_ID_EX;
@@ -71,9 +71,8 @@ if (rst = '1') then
     writeback_en_o <= '0';
     alu_en_o <= '0';
     OutPort_en_o <= '0';
-    add_branch_mux_o <= '0';
-    muxresult_oldpc_mux_o <= '0';
     wb_reg_enable_o <= '0';
+    Jump_select_o <= (others => '0');
    
 elsif rising_edge(clk) then
     --pass the inputs to the outputs
@@ -89,9 +88,8 @@ elsif rising_edge(clk) then
     writeback_en_o <= writeback_en;
     alu_en_o <= alu_en;
     OutPort_en_o <= OutPort_en;
-    add_branch_mux_o <= add_branch_mux;
-    muxresult_oldpc_mux_o <= muxresult_oldpc_mux;
     wb_reg_enable_o <= wb_reg_enable;
+    Jump_select_o <= Jump_select;
 
 end if;
 end process;

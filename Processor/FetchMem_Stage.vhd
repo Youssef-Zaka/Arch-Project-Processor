@@ -16,7 +16,7 @@ port(
     mem_write_en : in std_logic;
 
     jump_en : in std_logic;
-    jump_target : in std_logic_vector(19 downto 0);
+    jump_target : in std_logic_vector(31 downto 0);
     
     instruction_o : out std_logic_vector(31 downto 0);
     pc_o : out std_logic_vector(31 downto 0);
@@ -208,7 +208,7 @@ end if;
 
     if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' and jump_en = '1' then
      --Memory
-     Memory_Address_input := jump_target;
+     Memory_Address_input := jump_target(19 downto 0);
      Output_of_Memory := data_out;
 
      --PC register

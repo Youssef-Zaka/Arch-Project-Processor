@@ -24,8 +24,7 @@ entity decoder_stage is
     writeback_mux_o : out std_logic;
     alu_en_o: out std_logic;
     output_o : out std_logic;
-    adder_branch_mux_o : out std_logic;
-    result_adder_branch_mux_with_old_pc : out std_logic;
+    jump_sel_o : out std_logic_vector(2 downto 0);
     decoder_enable_wb_stage : out std_logic;
     R0_o: out std_logic_vector (31 downto 0);
     R1_o: out std_logic_vector (31 downto 0);
@@ -67,8 +66,7 @@ output_port_enable: out std_logic;
 mem_read_enable: out std_logic;
 mem_write_enable: out std_logic;
 mux_wb :out std_logic; -- 0 for result, 1 for memory
-mux_pc_adder_and_branch: out std_logic; -- 0 is pc adder, 1 is branching
-mux_PcOld_mux_adderAndBranch: out std_logic; -- 1 is old pc, 0 is result of mux branch and pc adder
+jump_select: out std_logic_vector (2 downto 0);
 if_id_reset: out std_logic; -- reset and enables for buffers
 id_ex_reset: out std_logic;
 ex_mem_reset: out std_logic;
@@ -108,8 +106,7 @@ writeback_en : in std_logic;
 
 alu_en: in std_logic;
 OutPort_en: in std_logic;
-add_branch_mux: in std_logic;
-muxresult_oldpc_mux : in std_logic;
+Jump_select : in std_logic_vector(2 downto 0);
 wb_reg_enable: in std_logic;  
 
 
@@ -126,8 +123,7 @@ InPort_en_o : out std_logic;
 writeback_en_o : out std_logic;
 alu_en_o: out std_logic;
 OutPort_en_o: out std_logic;
-add_branch_mux_o: out std_logic;
-muxresult_oldpc_mux_o : out std_logic;
+Jump_select_o : out std_logic_vector(2 downto 0);
 wb_reg_enable_o: out std_logic
 );
 end component;
@@ -163,8 +159,7 @@ signal output_port_enable_s: std_logic;
 signal mem_read_enable_s: std_logic;
 signal mem_write_enable_s: std_logic;
 signal mux_wb_s : std_logic; -- 0 for result, 1 for memory
-signal mux_pc_adder_and_branch_s: std_logic; -- 0 is pc adder, 1 is branching
-signal mux_PcOld_mux_adderAndBranch_s: std_logic; -- 1 is old pc, 0 is result of mux branch and pc adder
+signal jump_select_s: std_logic_vector(2 downto 0);
 signal if_id_reset_s: std_logic; -- reset and enables for buffers
 signal id_ex_reset_s: std_logic;
 signal ex_mem_reset_s: std_logic;
@@ -208,8 +203,7 @@ output_port_enable_s,
 mem_read_enable_s,
 mem_write_enable_s,
 mux_wb_s,
-mux_pc_adder_and_branch_s,
-mux_PcOld_mux_adderAndBranch_s,
+jump_select_s,
 if_id_reset_s,
 id_ex_reset_s,
 ex_mem_reset_s,
@@ -367,8 +361,7 @@ input_port_enable_s,
 mux_wb_s,
 alu_enable_s,
 output_port_enable_s,
-mux_pc_adder_and_branch_s,
-mux_PcOld_mux_adderAndBranch_s,
+jump_select_s,
 wb_reg_enable_s,
 rdst_o,
 data_1,
@@ -382,8 +375,7 @@ input_o,
 writeback_mux_o,
 alu_en_o,
 output_o,
-adder_branch_mux_o,
-result_adder_branch_mux_with_old_pc,
+jump_sel_o,
 decoder_enable_wb_stage
 );
 
