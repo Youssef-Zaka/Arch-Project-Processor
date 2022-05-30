@@ -159,9 +159,9 @@ begin
         if rst = '1' then
             OpCode_input_to_alu <= "0110";
         else
-            OpCode_input_to_alu <= alu_op_code;
+            OpCode_input_to_alu = alu_op_code;
         end if;
-    end process;
+    end process
 
     ALU_OBJ: ALU port map(data_1_o, data_2_o, OpCode_input_to_alu, Cin, alu_en_o, ResultfromALu, flagsEn, flags); 
     Flag_Register_OBJ: flagReg port map(clk,rst,flagsEn, flags(2),flags(0),flags(1), Cin, N_flag, Z_flag);

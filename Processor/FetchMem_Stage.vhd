@@ -190,7 +190,7 @@ begin
         buf_IF_ID_instruction<= (others => '0');
         buf_IF_ID_PC <= (others => '0');
     end IF; 
-    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' then
+    if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' and jump_en = '0' then
         --PC register
         PC_Input := PC_Plus_One;
 
@@ -208,6 +208,7 @@ end if;
 
     if rst = '0' and mem_read_en = '0' and mem_write_en = '0' and Interrupt = '0' and jump_en = '1' then
      --Memory
+     we <= '0';
      Memory_Address_input := jump_target(19 downto 0);
      Output_of_Memory := data_out;
 
