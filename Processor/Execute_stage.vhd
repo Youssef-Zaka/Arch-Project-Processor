@@ -154,7 +154,7 @@ begin
             end if;
         end if;
     end process;
-    process (rst)
+    process (clk)
     begin
         if rst = '1' then
             OpCode_input_to_alu <= "0110";
